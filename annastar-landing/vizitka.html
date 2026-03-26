@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anna Star — Визитка</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:        #B8860B;
+      --gold-light:  #FFD700;
+      --gold-pale:   #f5d06e;
+      --gold-dim:    rgba(184,134,11,0.35);
+      --bg:          #0a0a0a;
+      --card-bg:     rgba(12,12,14,0.88);
+      --text:        #e8e0d0;
+      --text-muted:  #9a8f7e;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      font-family: 'Georgia', 'Times New Roman', serif;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── Stars canvas ── */
+    #stars {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ── Page layout ── */
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    /* ── Card ── */
+    .card {
+      position: relative;
+      width: 100%;
+      max-width: 860px;
+      background: var(--card-bg);
+      border: 1px solid var(--gold-dim);
+      border-radius: 20px;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 0;
+      box-shadow:
+        0 0 0 1px rgba(255,215,0,0.06),
+        0 0 60px rgba(184,134,11,0.08),
+        0 24px 80px rgba(0,0,0,0.7);
+    }
+
+    /* gold corner accents */
+    .card::before,
+    .card::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      pointer-events: none;
+    }
+    .card::before {
+      top: -1px; left: -1px;
+      border-top: 2px solid var(--gold);
+      border-left: 2px solid var(--gold);
+      border-radius: 20px 0 0 0;
+    }
+    .card::after {
+      bottom: -1px; right: -1px;
+      border-bottom: 2px solid var(--gold);
+      border-right: 2px solid var(--gold);
+      border-radius: 0 0 20px 0;
+    }
+
+    /* ── Left: content ── */
+    .card__content {
+      padding: 52px 48px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .card__eyebrow {
+      font-family: system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.8;
+      margin-bottom: 14px;
+    }
+
+    .card__name {
+      font-size: clamp(44px, 6vw, 64px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      background: linear-gradient(135deg, #f5d06e 0%, #B8860B 40%, #FFD700 65%, #c9993a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 18px rgba(255,215,0,0.35));
+      margin-bottom: 4px;
+    }
+
+    .card__star-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .card__star-line span {
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+    .card__star-symbol {
+      color: var(--gold-light);
+      font-size: 16px;
+      filter: drop-shadow(0 0 6px var(--gold-light));
+    }
+
+    .card__spec {
+      font-family: system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+      line-height: 1.8;
+    }
+    .card__spec em {
+      color: var(--gold-pale);
+      font-style: normal;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin-bottom: 28px;
+    }
+
+    /* ── Links ── */
+    .card__links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+
+    .link-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-family: system-ui, sans-serif;
+      font-size: 13.5px;
+      letter-spacing: 0.03em;
+      transition: color 0.25s, filter 0.25s;
+      width: fit-content;
+    }
+    .link-item:hover {
+      color: var(--gold-pale);
+      filter: drop-shadow(0 0 8px rgba(255,215,0,0.4));
+    }
+    .link-item:hover .link-icon {
+      background: rgba(184,134,11,0.25);
+      border-color: var(--gold);
+      box-shadow: 0 0 14px rgba(255,215,0,0.3);
+    }
+    .link-item:hover .link-icon svg {
+      fill: var(--gold-light);
+    }
+
+    .link-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(184,134,11,0.3);
+      background: rgba(184,134,11,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.25s, border-color 0.25s, box-shadow 0.25s;
+    }
+    .link-icon svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--gold-dim);
+      transition: fill 0.25s;
+    }
+
+    /* ── CTA Button ── */
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #B8860B 0%, #8B6508 100%);
+      color: #fff8e7;
+      font-family: system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      width: fit-content;
+      box-shadow: 0 4px 20px rgba(184,134,11,0.35);
+      animation: pulse-glow 2.8s ease-in-out infinite;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(184,134,11,0.55);
+      animation-play-state: paused;
+    }
+    .btn-cta:active { transform: translateY(0); }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 4px 20px rgba(184,134,11,0.35); }
+      50%       { box-shadow: 0 4px 36px rgba(255,215,0,0.6), 0 0 60px rgba(184,134,11,0.2); }
+    }
+
+    .btn-cta svg {
+      width: 16px;
+      height: 16px;
+      fill: #fff8e7;
+    }
+
+    /* ── Right: photo ── */
+    .card__photo-col {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 36px 40px 16px;
+      overflow: hidden;
+    }
+
+    /* subtle right-side ambient glow */
+    .card__photo-col::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 50%, rgba(184,134,11,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .photo-wrap {
+      position: relative;
+      width: 220px;
+      height: 220px;
+    }
+
+    /* rotating dashed ring */
+    .photo-ring {
+      position: absolute;
+      inset: -12px;
+      border-radius: 50%;
+      border: 1px dashed rgba(184,134,11,0.4);
+      animation: rotate-ring 18s linear infinite;
+    }
+    /* 4 star dots on the ring */
+    .photo-ring::before,
+    .photo-ring::after {
+      content: '✦';
+      position: absolute;
+      color: var(--gold);
+      font-size: 10px;
+      line-height: 1;
+    }
+    .photo-ring::before { top: 4px; left: 50%; transform: translateX(-50%); }
+    .photo-ring::after  { bottom: 4px; left: 50%; transform: translateX(-50%); }
+
+    @keyframes rotate-ring {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* solid gold glow ring */
+    .photo-glow {
+      position: absolute;
+      inset: -2px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0%,
+        rgba(255,215,0,0.6) 25%,
+        transparent 50%,
+        rgba(184,134,11,0.4) 75%,
+        transparent 100%
+      );
+      animation: rotate-ring 4s linear infinite;
+      filter: blur(3px);
+    }
+
+    .photo-img {
+      position: relative;
+      z-index: 1;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 3px solid rgba(184,134,11,0.5);
+      box-shadow: 0 0 0 1px rgba(255,215,0,0.12), 0 8px 40px rgba(0,0,0,0.6);
+      display: block;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 680px) {
+      .card {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+      }
+      .card__photo-col {
+        padding: 40px 20px 0;
+        order: -1;
+      }
+      .photo-wrap {
+        width: 150px;
+        height: 150px;
+      }
+      .photo-img {
+        width: 150px;
+        height: 150px;
+      }
+      .card__content {
+        padding: 28px 28px 40px;
+        align-items: center;
+        text-align: center;
+      }
+      .card__eyebrow { text-align: center; }
+      .card__star-line { justify-content: center; }
+      .card__spec { text-align: center; }
+      .divider { margin-left: auto; margin-right: auto; }
+      .card__links { align-items: center; }
+      .btn-cta { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="page">
+  <div class="card">
+
+    <!-- LEFT: content -->
+    <div class="card__content">
+      <p class="card__eyebrow">Авторское искусство</p>
+
+      <h1 class="card__name">Anna Star</h1>
+
+      <div class="card__star-line">
+        <span></span>
+        <span class="card__star-symbol">✦</span>
+        <span style="background:linear-gradient(90deg,var(--gold),transparent);display:inline-block;width:28px;height:1px;"></span>
+      </div>
+
+      <p class="card__spec">
+        Художник &nbsp;•&nbsp; <em>Mixed Media Art</em><br>
+        <em>Æther Architecture</em>
+      </p>
+
+      <div class="divider"></div>
+
+      <div class="card__links">
+
+        <!-- Telegram -->
+        <a class="link-item" href="https://t.me/annastar_gallery" target="_blank" rel="noopener">
+          <span class="link-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11.994 2C6.477 2 2 6.478 2 11.994s4.477 9.994 9.994 9.994 9.994-4.478 9.994-9.994S17.511 2 11.994 2zm4.95 6.66-1.686 7.944c-.127.563-.46.703-.932.437l-2.578-1.9-1.244 1.197c-.138.138-.254.254-.52.254l.185-2.635 4.793-4.331c.208-.185-.046-.287-.323-.102L8.28 14.47l-2.54-.795c-.553-.172-.564-.553.115-.82l9.68-3.732c.46-.166.862.102.41 1.537z"/>
+            </svg>
+          </span>
+          t.me/annastar_gallery
+        </a>
+
+        <!-- Website -->
+        <a class="link-item" href="https://annastar.art" target="_blank" rel="noopener">
+          <span class="link-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-.36 0-1.194-.85-1.868-2.908A14.51 14.51 0 0 1 9.54 14h4.922a14.51 14.51 0 0 1-.591 3.092C13.194 19.15 12.36 20 12 20zm-2.566-8a14.84 14.84 0 0 1 0-4h5.132a14.84 14.84 0 0 1 0 4H9.434zm-4.38 0a7.944 7.944 0 0 1 0-4h2.884a16.9 16.9 0 0 0 0 4H5.054zm8.988-6H9.958c.482-1.83 1.245-3.092 1.853-3.574.055-.023.121-.043.189-.043s.134.02.19.043c.607.482 1.37 1.745 1.852 3.574zm4.904 0h-2.884c-.386-1.706-1.002-3.104-1.767-4.02A8.028 8.028 0 0 1 18.946 6zm-11.08 0H5.054A8.028 8.028 0 0 1 9.801 1.98C9.036 2.896 8.42 4.294 8.034 6zm7.158 6h2.884a7.944 7.944 0 0 1 0 4h-2.884a16.9 16.9 0 0 0 0-4zm.754 6.02A8.028 8.028 0 0 1 18.946 18h-2.884c.386-1.706 1.002-3.104 1.767-4.02zM7.24 18.02c.765.916 1.381 2.314 1.767 4.02H5.054A8.028 8.028 0 0 1 9.8 18.02z"/>
+            </svg>
+          </span>
+          annastar.art
+        </a>
+
+        <!-- Email -->
+        <a class="link-item" href="mailto:annbir999@gmail.com">
+          <span class="link-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+          </span>
+          annbir999@gmail.com
+        </a>
+
+      </div>
+
+      <a class="btn-cta" href="https://t.me/annastar_gallery" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M11.994 2C6.477 2 2 6.478 2 11.994s4.477 9.994 9.994 9.994 9.994-4.478 9.994-9.994S17.511 2 11.994 2zm4.95 6.66-1.686 7.944c-.127.563-.46.703-.932.437l-2.578-1.9-1.244 1.197c-.138.138-.254.254-.52.254l.185-2.635 4.793-4.331c.208-.185-.046-.287-.323-.102L8.28 14.47l-2.54-.795c-.553-.172-.564-.553.115-.82l9.68-3.732c.46-.166.862.102.41 1.537z"/></svg>
+        Написать мне
+      </a>
+    </div>
+
+    <!-- RIGHT: photo -->
+    <div class="card__photo-col">
+      <div class="photo-wrap">
+        <div class="photo-glow"></div>
+        <div class="photo-ring"></div>
+        <img class="photo-img" src="anna-star.jpg.jpg" alt="Anna Star"
+             onerror="this.style.background='radial-gradient(circle at 40% 30%,#2a1f05,#0a0a0a)';this.removeAttribute('src')" />
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  /* ── Star particle background ── */
+  (function() {
+    const PHOTO = 'anna-star.jpg'; // ← поменяй путь к фото здесь
+
+    const canvas = document.getElementById('stars');
+    const ctx    = canvas.getContext('2d');
+    let W, H, particles, connections;
+
+    const GOLD_COLORS = [
+      'rgba(255,215,0,',
+      'rgba(184,134,11,',
+      'rgba(245,208,110,',
+      'rgba(200,170,50,',
+    ];
+
+    function resize() {
+      W = canvas.width  = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+
+    class Particle {
+      constructor() { this.reset(true); }
+
+      reset(init) {
+        this.x    = Math.random() * W;
+        this.y    = init ? Math.random() * H : H + 4;
+        this.size = Math.random() * 1.4 + 0.3;
+        this.speed = Math.random() * 0.3 + 0.05;
+        this.vx   = (Math.random() - 0.5) * 0.15;
+        this.alpha = Math.random() * 0.6 + 0.15;
+        this.twinkleSpeed = Math.random() * 0.02 + 0.005;
+        this.twinklePhase = Math.random() * Math.PI * 2;
+        this.color = GOLD_COLORS[Math.floor(Math.random() * GOLD_COLORS.length)];
+        // occasional bright star
+        this.bright = Math.random() < 0.06;
+      }
+
+      update(t) {
+        this.y -= this.speed;
+        this.x += this.vx;
+        this.twinklePhase += this.twinkleSpeed;
+        const twinkle = 0.5 + 0.5 * Math.sin(this.twinklePhase);
+        this.currentAlpha = this.alpha * (this.bright ? (0.7 + 0.3 * twinkle) : (0.4 + 0.6 * twinkle));
+        if (this.y < -4) this.reset(false);
+      }
+
+      draw() {
+        ctx.save();
+        if (this.bright) {
+          // 4-point star shape
+          ctx.shadowColor = this.color + '0.9)';
+          ctx.shadowBlur  = 8;
+          ctx.fillStyle   = this.color + this.currentAlpha + ')';
+          ctx.beginPath();
+          const s = this.size * 2.5;
+          for (let i = 0; i < 4; i++) {
+            const a  = (i / 4) * Math.PI * 2;
+            const a2 = a + Math.PI / 4;
+            ctx.lineTo(this.x + Math.cos(a)  * s,     this.y + Math.sin(a)  * s);
+            ctx.lineTo(this.x + Math.cos(a2) * s*0.4, this.y + Math.sin(a2) * s*0.4);
+          }
+          ctx.closePath();
+          ctx.fill();
+        } else {
+          ctx.shadowColor = this.color + '0.5)';
+          ctx.shadowBlur  = 4;
+          ctx.fillStyle   = this.color + this.currentAlpha + ')';
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+    }
+
+    // Æther Architecture: slow-drifting gossamer lines between close particles
+    function drawConnections() {
+      const MAX_DIST = 90;
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const a = particles[i], b = particles[j];
+          if (!a.bright && !b.bright) continue; // only connect bright stars
+          const dx = a.x - b.x, dy = a.y - b.y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < MAX_DIST) {
+            const alpha = (1 - dist / MAX_DIST) * 0.08;
+            ctx.strokeStyle = `rgba(184,134,11,${alpha})`;
+            ctx.lineWidth   = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function init() {
+      resize();
+      const count = Math.min(Math.floor((W * H) / 6000), 200);
+      particles = Array.from({ length: count }, () => new Particle());
+    }
+
+    let raf;
+    function loop(t) {
+      ctx.clearRect(0, 0, W, H);
+      drawConnections();
+      particles.forEach(p => { p.update(t); p.draw(); });
+      raf = requestAnimationFrame(loop);
+    }
+
+    window.addEventListener('resize', () => { resize(); });
+    init();
+    loop(0);
+  })();
+</script>
+
+</body>
+</html>

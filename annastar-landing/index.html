@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AnnaStar — Авторское искусство в ювелирных техниках</title>
+  <meta name="description" content="Авторские картины маслом для вашего интерьера. Выберите готовую работу или закажите картину под ваш интерьер." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/quiz.css" />
+  <link rel="stylesheet" href="css/mobile.css" />
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero__content">
+      <h1 class="hero__title">Авторские картины маслом<br>для вашего интерьера</h1>
+      <p class="hero__subtitle">Каждая работа — уникальна. Готовые картины и заказ под ваш интерьер.</p>
+      <a href="#catalog" class="btn btn--primary">Смотреть каталог</a>
+      <a href="#quiz" class="btn btn--outline">Подобрать картину</a>
+    </div>
+    <div class="hero__image">
+      <img src="images/artist/artist-hero.webp" alt="Художник AnnaStar" />
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container">
+      <h2 class="section-title">О художнике</h2>
+      <div class="about__inner">
+        <div class="about__photo">
+          <img src="images/artist/artist-portrait.webp" alt="AnnaStar — художник" />
+        </div>
+        <div class="about__text">
+          <p>Привет! Я Анна — художник, влюблённая в масло и текстуру. Пишу картины, которые живут в интерьере, а не просто висят на стене.</p>
+          <p>10+ лет практики, 200+ работ в частных коллекциях России и Европы.</p>
+          <ul class="about__facts">
+            <li>Работаю только с профессиональными материалами</li>
+            <li>Каждая картина — с сертификатом подлинности</li>
+            <li>Принимаю заказы под конкретный интерьер</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATALOG -->
+  <section class="catalog" id="catalog">
+    <div class="container">
+      <h2 class="section-title">Каталог работ</h2>
+      <div class="catalog__filters" id="catalogFilters">
+        <button class="filter-btn active" data-filter="all">Все</button>
+        <button class="filter-btn" data-filter="botanica">Botanica</button>
+        <button class="filter-btn" data-filter="zoology">Zoology</button>
+        <button class="filter-btn" data-filter="relax">Relax</button>
+        <button class="filter-btn" data-filter="abstraction">Abstraction</button>
+      </div>
+      <div class="catalog__grid" id="catalogGrid">
+        <!-- Карточки генерируются через catalog.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- MOCKUPS -->
+  <section class="mockups" id="mockups">
+    <div class="container">
+      <h2 class="section-title">Картины в интерьере</h2>
+      <div class="mockups__grid">
+        <img src="images/mockups/mockup-1.webp" alt="Картина в гостиной" />
+        <img src="images/mockups/mockup-2.webp" alt="Картина в спальне" />
+        <img src="images/mockups/mockup-3.webp" alt="Картина в кабинете" />
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="quiz" id="quiz">
+    <div class="container">
+      <h2 class="section-title">Подберём картину для вас</h2>
+      <p class="quiz__intro">Ответьте на 4 вопроса — предложим идеальный вариант</p>
+      <div class="quiz__wrapper" id="quizWrapper">
+        <!-- Квиз генерируется через quiz.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER FORM -->
+  <section class="order" id="order">
+    <div class="container">
+      <h2 class="section-title">Заказать картину</h2>
+      <form class="order__form" id="orderForm">
+        <div class="form-group">
+          <label for="name">Ваше имя *</label>
+          <input type="text" id="name" name="name" placeholder="Анна" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Телефон *</label>
+          <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="anna@mail.ru" />
+        </div>
+        <div class="form-group">
+          <label for="message">Пожелания к картине</label>
+          <textarea id="message" name="message" rows="4" placeholder="Расскажите об интерьере, размере, цветовых предпочтениях..."></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary btn--full">Отправить заявку</button>
+        <p class="form-note">Отвечу в течение 2 часов в рабочее время</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <p class="footer__copy">&copy; 2024 AnnaStar. Все права защищены.</p>
+        <div class="footer__links">
+          <a href="https://t.me/annastar" target="_blank">Telegram</a>
+          <a href="https://instagram.com/annastar" target="_blank">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL -->
+  <div class="modal" id="workModal" aria-hidden="true">
+    <div class="modal__overlay" id="modalOverlay"></div>
+    <div class="modal__content" id="modalContent">
+      <button class="modal__close" id="modalClose" aria-label="Закрыть">&times;</button>
+    </div>
+  </div>
+
+  <script src="js/catalog.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/form.js"></script>
+  <script src="js/payment.js"></script>
+</body>
+</html>

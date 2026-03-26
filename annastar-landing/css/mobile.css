@@ -1,0 +1,113 @@
+/* ===========================================
+   ANNASTAR LANDING — МЕДИА-ЗАПРОСЫ
+   =========================================== */
+
+/* --- TABLET: ≤ 1024px --- */
+@media (max-width: 1024px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 80px 24px 60px;
+    text-align: center;
+  }
+
+  .hero__content { align-items: center; }
+  .hero__subtitle { max-width: 100%; }
+
+  .hero__image {
+    order: -1;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .about__inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .about__photo {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .about__facts li { padding-left: 0; }
+  .about__facts li::before { display: none; }
+
+  .mockups__grid { grid-template-columns: 1fr 1fr; }
+  .mockups__grid img:last-child { grid-column: 1 / -1; max-width: 50%; margin: 0 auto; }
+}
+
+/* --- MOBILE: ≤ 768px --- */
+@media (max-width: 768px) {
+  :root { --container-px: 16px; }
+
+  /* Hero */
+  .hero { padding: 60px 16px 48px; gap: 32px; }
+  .hero__content { gap: 8px; }
+  .hero__content .btn { width: 100%; }
+  .hero__image { max-width: 100%; }
+
+  /* About */
+  .about { padding: 64px 0; }
+
+  /* Catalog */
+  .catalog { padding: 64px 0; }
+  .catalog__grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+  .catalog__filters { gap: 8px; }
+  .filter-btn { padding: 6px 14px; font-size: 13px; }
+
+  /* Mockups */
+  .mockups { padding: 64px 0; }
+  .mockups__grid {
+    grid-template-columns: 1fr;
+  }
+  .mockups__grid img:last-child {
+    grid-column: auto;
+    max-width: 100%;
+  }
+
+  /* Quiz */
+  .quiz { padding: 64px 0; }
+  .quiz__options { grid-template-columns: 1fr; }
+  .quiz__nav { flex-direction: column-reverse; align-items: stretch; }
+  .quiz__btn-next { width: 100%; }
+  .quiz__btn-back { text-align: center; }
+
+  /* Order */
+  .order { padding: 64px 0; }
+
+  /* Footer */
+  .footer__inner { flex-direction: column; gap: 16px; text-align: center; }
+
+  /* Modal */
+  .modal__content { padding: 24px 20px; width: 95%; }
+
+  /* Work card */
+  .work-card__footer { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
+
+/* --- SMALL MOBILE: ≤ 480px --- */
+@media (max-width: 480px) {
+  .section-title { margin-bottom: 28px; }
+
+  .catalog__grid { grid-template-columns: 1fr; }
+
+  .quiz__result-cards { grid-template-columns: 1fr; }
+
+  .hero__title { font-size: 28px; }
+
+  .btn { padding: 12px 24px; font-size: 15px; }
+}
+
+/* --- HOVER: touch-устройства --- */
+@media (hover: none) {
+  .work-card:hover { transform: none; }
+  .work-card:hover .work-card__img img { transform: none; }
+}
+
+/* --- PREFER REDUCED MOTION --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
