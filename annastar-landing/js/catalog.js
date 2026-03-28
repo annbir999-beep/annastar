@@ -70,23 +70,37 @@ class Catalog {
   _cardHTML(w) {
     const statusClass = w.available ? 'work-card__status--available' : 'work-card__status--sold';
     const statusText  = w.available ? 'В наличии' : 'Продана';
+    const wishlist    = this._getWishlist();
+    const isWished    = wishlist.includes(w.id);
+    const isFeatured  = w.tags?.includes('hero');
 
     return `
-      <article class="work-card" data-id="${w.id}" role="button" tabindex="0" aria-label="Открыть работу: ${w.title}">
+      <article class="work-card${isFeatured ? ' work-card--featured' : ''}" data-id="${w.id}" role="button" tabindex="0" aria-label="Открыть работу: ${w.title}">
+        ${isFeatured ? '<span class="work-card__badge">Флагман коллекции</span>' : ''}
+        <button class="work-card__wish${isWished ? ' is-wished' : ''}" data-wish="${w.id}" aria-label="В избранное" title="В избранное">♡</button>
         <div class="work-card__img">
           ${this._imageHTML(w.image, w.title)}
         </div>
         <div class="work-card__body">
           <h3 class="work-card__title">${w.title}</h3>
           ${w.title_ru ? `<p class="work-card__title-ru">${w.title_ru}</p>` : ''}
-          <p class="work-card__meta">${w.size} • ${w.materials} • ${w.year}</p>
+          <p class="work-card__meta">${w.size} • ${w.year}</p>
           <div class="work-card__footer">
             <span class="work-card__price">${w.price_rub.toLocaleString('ru-RU')} ₽</span>
             <span class="work-card__status ${statusClass}">${statusText}</span>
           </div>
+          <p class="work-card__cert">✦ Сертификат подлинности</p>
         </div>
       </article>
     `;
+  }
+
+  _getWishlist() {
+    try { return JSON.parse(localStorage.getItem('annastar_wishlist') || '[]'); } catch { return []; }
+  }
+
+  _saveWishlist(list) {
+    localStorage.setItem('annastar_wishlist', JSON.stringify(list));
   }
 
   _bindFilters() {
@@ -109,8 +123,24 @@ class Catalog {
   }
 
   _bindModal() {
+    // Wishlist
+    this.grid.addEventListener('click', (e) => {
+      const wishBtn = e.target.closest('.work-card__wish');
+      if (wishBtn) {
+        e.stopPropagation();
+        const id   = wishBtn.dataset.wish;
+        const list = this._getWishlist();
+        const idx  = list.indexOf(id);
+        if (idx === -1) { list.push(id); wishBtn.classList.add('is-wished'); wishBtn.textContent = '♥'; }
+        else            { list.splice(idx, 1); wishBtn.classList.remove('is-wished'); wishBtn.textContent = '♡'; }
+        this._saveWishlist(list);
+        return;
+      }
+    });
+
     // Открытие по клику на карточку
     this.grid.addEventListener('click', (e) => {
+      if (e.target.closest('.work-card__wish')) return;
       const card = e.target.closest('.work-card');
       if (!card) return;
       const work = this.works.find(w => w.id === card.dataset.id);
@@ -143,7 +173,7 @@ class Catalog {
 
     this.modalContent.innerHTML = `
       <button class="modal__close" id="modalClose" aria-label="Закрыть">&times;</button>
-      <div class="modal__grid" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start">
+      <div class="modal__grid">
         ${this._imageHTML(work.image, work.title, 'style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.1)"')}
         <div>
           <h2 style="font-family:var(--font-heading);font-size:26px;margin-bottom:8px">${work.title}</h2>

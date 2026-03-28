@@ -1,74 +1,79 @@
 /**
  * quiz.js — логика квиза подбора картины
- * Рендерит шаги, собирает ответы, фильтрует works.json и показывает результат
  */
 
 const QUIZ_CONFIG = [
   {
     id: 'style',
-    question: 'Какой стиль вам ближе?',
+    question: 'Какой образ вам ближе?',
     options: [
-      { value: 'abstract',  icon: '🎨', label: 'Абстракция' },
-      { value: 'landscape', icon: '🌿', label: 'Пейзаж' },
-      { value: 'portrait',  icon: '👤', label: 'Портрет' },
-      { value: 'floral',    icon: '🌸', label: 'Цветы' },
+      { value: 'botanica',    icon: '🌿', label: 'Природа и цветы' },
+      { value: 'zoology',     icon: '🦁', label: 'Животные' },
+      { value: 'abstraction', icon: '✦',  label: 'Абстракция' },
+      { value: 'relax',       icon: '☽',  label: 'Медитация' },
     ],
   },
   {
     id: 'palette',
     question: 'Какая цветовая палитра подойдёт вашему интерьеру?',
     options: [
-      { value: 'warm',    icon: '🟠', label: 'Тёплые тона' },
-      { value: 'cool',    icon: '🔵', label: 'Холодные тона' },
-      { value: 'neutral', icon: '⚪', label: 'Нейтральные' },
-      { value: 'bright',  icon: '🌈', label: 'Яркие акценты' },
+      { value: 'warm',    icon: '✦', label: 'Тёплые — золото, терракот' },
+      { value: 'cool',    icon: '◈', label: 'Холодные — серебро, синий' },
+      { value: 'neutral', icon: '○', label: 'Нейтральные — белый, зелёный' },
+      { value: 'bright',  icon: '◉', label: 'Яркие акценты' },
     ],
   },
   {
     id: 'size',
     question: 'Какой размер вам нужен?',
     options: [
-      { value: 'small',   icon: '🖼️',  label: 'До 40×50 см' },
-      { value: 'medium',  icon: '🖼',   label: '50×70 — 60×80 см' },
-      { value: 'large',   icon: '🖼️',  label: '80×100 и больше' },
-      { value: 'any',     icon: '✨',   label: 'Не важно' },
+      { value: 'small',  icon: '▫', label: 'Небольшой — до 40×50 см' },
+      { value: 'medium', icon: '▪', label: 'Средний — 50×70 до 60×80 см' },
+      { value: 'large',  icon: '■', label: 'Большой — 70×100 и более' },
+      { value: 'any',    icon: '✦', label: 'Размер не важен' },
     ],
   },
   {
     id: 'budget',
     question: 'Какой бюджет вы рассматриваете?',
     options: [
-      { value: 'low',    icon: '💛', label: 'До 10 000 ₽' },
-      { value: 'mid',    icon: '🧡', label: '10 000 — 25 000 ₽' },
-      { value: 'high',   icon: '❤️', label: '25 000 — 50 000 ₽' },
-      { value: 'vip',    icon: '💎', label: 'Без ограничений' },
+      { value: 'low',  icon: '◇', label: 'До 35 000 ₽' },
+      { value: 'mid',  icon: '◆', label: '35 000 — 90 000 ₽' },
+      { value: 'high', icon: '❖', label: '90 000 — 180 000 ₽' },
+      { value: 'vip',  icon: '✦', label: 'Без ограничений' },
     ],
   },
 ];
+
+// Маппинг палитры на теги works.json
+const PALETTE_TAGS = {
+  warm:    ['fire', 'gold', 'pink'],
+  cool:    ['night', 'silver', 'purple', 'blue'],
+  neutral: ['white', 'architecture', 'green'],
+  bright:  null, // не фильтруем — яркие есть у всех
+};
 
 class Quiz {
   constructor(containerId) {
     this.container = document.getElementById(containerId);
     if (!this.container) return;
 
-    this.answers   = {};
-    this.step      = 0;
-    this.works     = [];
+    this.answers = {};
+    this.step    = 0;
+    this.works   = [];
 
     this._loadWorks().then(() => this._render());
   }
 
-  /** Загружаем данные работ */
   async _loadWorks() {
     try {
       const res = await fetch('data/works.json');
       this.works = await res.json();
     } catch {
-      this.works = [];
+      this.works = typeof WORKS_DATA !== 'undefined' ? WORKS_DATA : [];
     }
   }
 
-  /** Начальный рендер HTML квиза */
   _render() {
     this.container.innerHTML = `
       <div class="quiz__progress">
@@ -121,21 +126,16 @@ class Quiz {
   }
 
   _bindEvents() {
-    // Выбор варианта
     this.container.addEventListener('click', (e) => {
       const opt = e.target.closest('.quiz__option');
       if (opt) {
         const step = opt.closest('.quiz__step');
         step.querySelectorAll('.quiz__option').forEach(o => o.classList.remove('is-selected'));
         opt.classList.add('is-selected');
-
-        const questionId = QUIZ_CONFIG[this.step].id;
-        this.answers[questionId] = opt.dataset.value;
-
+        this.answers[QUIZ_CONFIG[this.step].id] = opt.dataset.value;
         step.querySelector('.quiz__btn-next').disabled = false;
       }
 
-      // Кнопка "Далее"
       if (e.target.closest('.quiz__btn-next') && !e.target.closest('.quiz__btn-next').disabled) {
         if (this.step < QUIZ_CONFIG.length - 1) {
           this.step++;
@@ -145,13 +145,11 @@ class Quiz {
         }
       }
 
-      // Кнопка "Назад"
       if (e.target.closest('.quiz__btn-back') && this.step > 0) {
         this.step--;
         this._updateStep();
       }
 
-      // Рестарт
       if (e.target.id === 'quizRestart') this._restart();
     });
   }
@@ -160,7 +158,6 @@ class Quiz {
     const steps = this.container.querySelectorAll('.quiz__step');
     steps.forEach((s, i) => s.classList.toggle('is-active', i === this.step));
 
-    // Восстанавливаем выбор если уже отвечали
     const currentQ = QUIZ_CONFIG[this.step];
     if (this.answers[currentQ.id]) {
       const activeStep = steps[this.step];
@@ -171,33 +168,26 @@ class Quiz {
       }
     }
 
-    // Прогресс
     const pct = Math.round((this.step / QUIZ_CONFIG.length) * 100);
     this.container.querySelector('.quiz__progress-fill').style.width = `${pct}%`;
     this.container.querySelector('.quiz__step-label').textContent =
       `Вопрос ${this.step + 1} из ${QUIZ_CONFIG.length}`;
     this.container.querySelector('.quiz__step-percent').textContent = `${pct}%`;
 
-    // Последний шаг — меняем текст кнопки
     const nextBtn = steps[this.step]?.querySelector('.quiz__btn-next');
     if (nextBtn) nextBtn.textContent = this.step === QUIZ_CONFIG.length - 1 ? 'Показать результат' : 'Далее →';
 
-    // Скрыть блок результата
     document.getElementById('quizResult')?.classList.remove('is-active');
     this.container.querySelector('.quiz__steps').style.display = '';
     this.container.querySelector('.quiz__progress').style.display = '';
   }
 
   _showResult() {
-    // Прогресс 100%
     this.container.querySelector('.quiz__progress-fill').style.width = '100%';
     this.container.querySelector('.quiz__step-percent').textContent = '100%';
-
-    // Скрываем шаги
     this.container.querySelector('.quiz__steps').style.display = 'none';
     this.container.querySelector('.quiz__progress').style.display = 'none';
 
-    // Фильтруем работы
     const matched = this._matchWorks();
     const cardsEl = document.getElementById('quizResultCards');
 
@@ -206,16 +196,17 @@ class Quiz {
         Подходящих работ пока нет — свяжитесь со мной для индивидуального заказа.
       </p>`;
     } else {
-      cardsEl.innerHTML = matched.slice(0, 3).map(w => `
+      cardsEl.innerHTML = matched.slice(0, 6).map(w => `
         <div class="work-card">
           <div class="work-card__img">
-            <img src="images/works/${w.image}" alt="${w.title}" loading="lazy" />
+            <img src="images/works/${w.image}" alt="${w.title_ru || w.title}" loading="lazy" />
           </div>
           <div class="work-card__body">
             <p class="work-card__title">${w.title}</p>
-            <p class="work-card__meta">${w.size} • ${w.medium}</p>
+            <p class="work-card__title-ru">${w.title_ru || ''}</p>
+            <p class="work-card__meta">${w.size} • ${w.year}</p>
             <div class="work-card__footer">
-              <span class="work-card__price">${w.price.toLocaleString('ru-RU')} ₽</span>
+              <span class="work-card__price">${w.price_rub.toLocaleString('ru-RU')} ₽</span>
             </div>
           </div>
         </div>
@@ -227,13 +218,31 @@ class Quiz {
 
   _matchWorks() {
     return this.works.filter(w => {
-      if (this.answers.style && this.answers.style !== 'any' && w.category !== this.answers.style) return false;
-      if (this.answers.palette && this.answers.palette !== 'any' && w.palette && !w.palette.includes(this.answers.palette)) return false;
-      if (this.answers.budget) {
-        const budgetMap = { low: [0, 10000], mid: [10000, 25000], high: [25000, 50000], vip: [0, Infinity] };
-        const [min, max] = budgetMap[this.answers.budget] || [0, Infinity];
-        if (w.price < min || w.price > max) return false;
+      // Стиль → совпадение с series
+      if (this.answers.style) {
+        if (w.series?.toLowerCase() !== this.answers.style) return false;
       }
+
+      // Палитра → проверяем теги
+      if (this.answers.palette) {
+        const allowedTags = PALETTE_TAGS[this.answers.palette];
+        if (allowedTags && !w.tags.some(t => allowedTags.includes(t))) return false;
+      }
+
+      // Размер → по sqm
+      if (this.answers.size && this.answers.size !== 'any') {
+        const sizeMap = { small: [0, 0.20], medium: [0.20, 0.55], large: [0.55, Infinity] };
+        const [min, max] = sizeMap[this.answers.size] || [0, Infinity];
+        if (w.sqm < min || w.sqm >= max) return false;
+      }
+
+      // Бюджет
+      if (this.answers.budget) {
+        const budgetMap = { low: [0, 35000], mid: [35000, 90000], high: [90000, 180000], vip: [0, Infinity] };
+        const [min, max] = budgetMap[this.answers.budget] || [0, Infinity];
+        if (w.price_rub < min || w.price_rub >= max) return false;
+      }
+
       return true;
     });
   }
@@ -242,7 +251,6 @@ class Quiz {
     this.answers = {};
     this.step    = 0;
     this._updateStep();
-    // Сбрасываем выделения
     this.container.querySelectorAll('.quiz__option').forEach(o => o.classList.remove('is-selected'));
     this.container.querySelectorAll('.quiz__btn-next').forEach(b => b.disabled = true);
   }
