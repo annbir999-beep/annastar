@@ -87,6 +87,7 @@ class TryOn {
               <span class="tryon__upload-change">
                 ${this._t('Изменить фото', 'Change photo')}
               </span>
+              <button class="tryon__room-clear" id="tryonRoomClear" type="button" title="${this._t('Удалить фото', 'Remove photo')}">×</button>
             ` : `
               <div class="tryon__upload-inner">
                 <span class="tryon__upload-icon">↑</span>
@@ -144,6 +145,13 @@ class TryOn {
     const uploadZone = document.getElementById('tryonUploadZone');
 
     fileInput?.addEventListener('change', e => this._loadRoomFile(e.target.files[0]));
+
+    document.getElementById('tryonRoomClear')?.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      this.roomImg = null;
+      this._renderSelector();
+    });
 
     uploadZone?.addEventListener('dragover',  e => { e.preventDefault(); uploadZone.classList.add('is-drag'); });
     uploadZone?.addEventListener('dragleave', ()  => uploadZone.classList.remove('is-drag'));
@@ -227,7 +235,7 @@ class TryOn {
             <button class="btn btn--primary tryon__download" id="tryonDownload">
               ${this._t('↓ Скачать мокап', '↓ Download mockup')}
             </button>
-            <button class="btn btn--outline-light tryon__back" id="tryonBack">
+            <button class="tryon__back-btn" id="tryonBack" type="button">
               ${this._t('← Выбрать другую картину', '← Choose another painting')}
             </button>
           </div>
