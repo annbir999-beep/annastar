@@ -1,4 +1,5 @@
-[
+// Данные о работах — запасной вариант для открытия без сервера (file://)
+const WORKS_DATA = [
   {
     "id": "royal-iris",
     "title": "Royal Iris",
@@ -239,4 +240,4 @@
     "available": true,
     "tags": ["zoology", "animal", "gold", "hero", "large"]
   }
-]
+];

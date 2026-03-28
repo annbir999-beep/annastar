@@ -28,10 +28,16 @@ class Catalog {
   async _loadWorks() {
     try {
       const res = await fetch('data/works.json');
+      if (!res.ok) throw new Error(res.status);
       this.works = await res.json();
     } catch (err) {
-      console.error('Не удалось загрузить works.json:', err);
-      this.works = [];
+      // При открытии файла напрямую (file://) fetch не работает — используем встроенные данные
+      if (typeof WORKS_DATA !== 'undefined') {
+        this.works = WORKS_DATA;
+      } else {
+        console.error('Не удалось загрузить works.json:', err);
+        this.works = [];
+      }
     }
   }
 
@@ -148,10 +154,15 @@ class Catalog {
             <span style="font-size:24px;font-weight:700;color:var(--color-primary)">${work.price_rub.toLocaleString('ru-RU')} ₽</span>
             <span class="work-card__status ${statusClass}">${statusText}</span>
           </div>
-          ${work.available ? `
-            <button class="btn btn--primary" style="width:100%" onclick="Payment.buyWork(${work.id})">
+          ${work.available && work.payment_link ? `
+            <button class="btn btn--primary" style="width:100%" onclick="window.open('${work.payment_link}', '_blank')">
               Купить эту работу
             </button>
+          ` : work.available ? `
+            <a href="#order" class="btn btn--outline" style="width:100%;display:flex;justify-content:center"
+               onclick="catalog._closeModal()">
+              Узнать цену
+            </a>
           ` : `
             <a href="#order" class="btn btn--outline" style="width:100%;display:flex;justify-content:center"
                onclick="catalog._closeModal()">

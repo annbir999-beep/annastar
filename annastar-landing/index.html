@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AnnaStar — Авторское искусство в ювелирных техниках</title>
-  <meta name="description" content="Авторские картины маслом для вашего интерьера. Выберите готовую работу или закажите картину под ваш интерьер." />
+  <title>Anna Biryukova — Sculptural Mixed Media Art</title>
+  <meta name="description" content="Авторские картины в смешанной технике: акрил, смола, сусальное золото, зеркало, стразы. Уникальные объёмные работы для современного интерьера." />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/quiz.css" />
   <link rel="stylesheet" href="css/mobile.css" />
@@ -14,13 +14,16 @@
   <!-- HERO -->
   <section class="hero" id="hero">
     <div class="hero__content">
-      <h1 class="hero__title">Авторские картины маслом<br>для вашего интерьера</h1>
-      <p class="hero__subtitle">Каждая работа — уникальна. Готовые картины и заказ под ваш интерьер.</p>
-      <a href="#catalog" class="btn btn--primary">Смотреть каталог</a>
-      <a href="#quiz" class="btn btn--outline">Подобрать картину</a>
+      <p class="hero__eyebrow">Anna Biryukova · Mixed Media Art</p>
+      <h1 class="hero__title">Искусство, в котором<br>живёт свет</h1>
+      <p class="hero__subtitle">Каждое произведение создаётся слой за слоем — текстура, отражение и свет формируют объёмную поверхность, несущую силу и тихую гармонию.</p>
+      <div class="hero__btns">
+        <a href="#catalog" class="btn btn--primary">Смотреть каталог</a>
+        <a href="#quiz" class="btn btn--outline">Подобрать картину</a>
+      </div>
     </div>
     <div class="hero__image">
-      <img src="images/artist/artist-hero.webp" alt="Художник AnnaStar" />
+      <img src="images/artist/freepik__-img3-img2-img1__70721.png" alt="Anna Biryukova за работой" />
     </div>
   </section>
 
@@ -30,15 +33,19 @@
       <h2 class="section-title">О художнике</h2>
       <div class="about__inner">
         <div class="about__photo">
-          <img src="images/artist/artist-portrait.webp" alt="AnnaStar — художник" />
+          <img src="anna-star.jpg.jpg" alt="Anna Biryukova — Mixed Media Artist" />
         </div>
         <div class="about__text">
-          <p>Привет! Я Анна — художник, влюблённая в масло и текстуру. Пишу картины, которые живут в интерьере, а не просто висят на стене.</p>
-          <p>10+ лет практики, 200+ работ в частных коллекциях России и Европы.</p>
+          <blockquote class="about__quote">
+            "I build each artwork layer by layer, allowing texture, reflection, and light to shape a sculptural surface that carries both strength and quiet harmony."
+          </blockquote>
+          <p>Anna Biryukova — современный художник, работающий в технике mixed media. Её язык сочетает геометрическую структуру с органическим движением, создавая выразительные композиции, которые передают силу, гармонию и трансформацию.</p>
+          <p>В своём многоэтапном процессе Анна создаёт объёмные работы с использованием многослойного акрила, смолы, сусального золота, зеркальных элементов, стеклянных текстур, страз и декоративных камней. Эти материалы формируют рельефные поверхности, взаимодействующие со светом и открывающие новые нюансы с каждого угла обзора.</p>
           <ul class="about__facts">
-            <li>Работаю только с профессиональными материалами</li>
-            <li>Каждая картина — с сертификатом подлинности</li>
-            <li>Принимаю заказы под конкретный интерьер</li>
+            <li>Вдохновение — животные, ботанические мотивы и символические образы</li>
+            <li>Каждая работа создаётся вручную и может занимать несколько недель</li>
+            <li>Все произведения — уникальные оригиналы, не имеющие копий</li>
+            <li>Работы становятся акцентными точками современного интерьера</li>
           </ul>
         </div>
       </div>
@@ -66,12 +73,20 @@
   <section class="mockups" id="mockups">
     <div class="container">
       <h2 class="section-title">Картины в интерьере</h2>
-      <div class="mockups__grid">
-        <img src="images/mockups/mockup-1.webp" alt="Картина в гостиной" />
-        <img src="images/mockups/mockup-2.webp" alt="Картина в спальне" />
-        <img src="images/mockups/mockup-3.webp" alt="Картина в кабинете" />
-      </div>
     </div>
+    <div class="mockups__carousel-wrap">
+      <div class="mockups__carousel" id="mockupsCarousel">
+        <div class="mockups__slide"><img src="images/mockups/mockup-1.jpg" alt="Картина в интерьере" /></div>
+        <div class="mockups__slide"><img src="images/mockups/mockup-2.jpg" alt="Картина в интерьере" /></div>
+        <div class="mockups__slide"><img src="images/mockups/mockup-3.jpg" alt="Картина в интерьере" /></div>
+        <div class="mockups__slide"><img src="images/mockups/mockup-4.jpg" alt="Картина в интерьере" /></div>
+        <div class="mockups__slide"><img src="images/mockups/mockup-5.jpg" alt="Картина в интерьере" /></div>
+        <div class="mockups__slide"><img src="images/mockups/mockup-6.jpg" alt="Картина в интерьере" /></div>
+      </div>
+      <button class="mockups__arrow mockups__arrow--prev" id="mockupsPrev" aria-label="Назад">&#8592;</button>
+      <button class="mockups__arrow mockups__arrow--next" id="mockupsNext" aria-label="Вперёд">&#8594;</button>
+    </div>
+    <div class="mockups__dots" id="mockupsDots"></div>
   </section>
 
   <!-- QUIZ -->
@@ -133,7 +148,9 @@
     </div>
   </div>
 
+  <script src="js/works-data.js"></script>
   <script src="js/catalog.js"></script>
+  <script src="js/mockups.js"></script>
   <script src="js/quiz.js"></script>
   <script src="js/form.js"></script>
   <script src="js/payment.js"></script>
