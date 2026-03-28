@@ -200,12 +200,17 @@ class TryOn {
 
         <div class="tryon__canvas-wrap">
           <canvas id="tryonCanvas"></canvas>
-          <p class="tryon__canvas-hint">
-            ${this._t(
-              '✦ Перетаскивай картину · Тяни угол для изменения размера',
-              '✦ Drag the painting · Pull a corner to resize'
-            )}
-          </p>
+          <div class="tryon__canvas-footer">
+            <p class="tryon__canvas-hint">
+              ${this._t(
+                '✦ Перетаскивай картину · Тяни угол для изменения размера',
+                '✦ Drag the painting · Pull a corner to resize'
+              )}
+            </p>
+            <button class="tryon__back-inline" id="tryonBackInline" type="button">
+              ${this._t('← Выбрать другую картину', '← Choose another painting')}
+            </button>
+          </div>
         </div>
 
         <div class="tryon__sidebar">
@@ -223,7 +228,7 @@ class TryOn {
               ${this._t('↓ Скачать мокап', '↓ Download mockup')}
             </button>
             <button class="btn btn--outline-light tryon__back" id="tryonBack">
-              ${this._t('← Изменить', '← Change')}
+              ${this._t('← Выбрать другую картину', '← Choose another painting')}
             </button>
           </div>
 
@@ -244,11 +249,10 @@ class TryOn {
 
     this._initCanvas();
 
+    const goBack = () => { this._editorActive = false; this._renderSelector(); };
     document.getElementById('tryonDownload')?.addEventListener('click', () => this._download());
-    document.getElementById('tryonBack')?.addEventListener('click', () => {
-      this._editorActive = false;
-      this._renderSelector();
-    });
+    document.getElementById('tryonBack')?.addEventListener('click', goBack);
+    document.getElementById('tryonBackInline')?.addEventListener('click', goBack);
   }
 
   // ─── Canvas ───────────────────────────────────────────────────────────────────
