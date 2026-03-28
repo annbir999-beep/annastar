@@ -14,12 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const empty = document.getElementById('reviewsEmpty');
   if (!grid) return;
 
+  const section = document.getElementById('reviews');
+
   if (REVIEWS_FILES.length === 0) {
-    empty && (empty.style.display = 'block');
-    return;
+    return; // секция скрыта через style в HTML
   }
 
-  empty && (empty.style.display = 'none');
+  section && (section.style.display = '');
 
   grid.innerHTML = REVIEWS_FILES.map((file, i) => `
     <div class="review-card reveal" style="transition-delay:${i * 0.08}s">
