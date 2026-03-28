@@ -52,12 +52,6 @@ class Catalog {
     }
   }
 
-  // "50×70 cm" → "50 / 70", "Ø55 cm" → "1 / 1"
-  _getAspectRatio(size) {
-    if (/^Ø/i.test(size)) return '1 / 1';
-    const m = size.match(/(\d+)[×x](\d+)/);
-    return m ? `${m[1]} / ${m[2]}` : '3 / 4';
-  }
 
   _renderCards(works) {
     if (works.length === 0) {
@@ -91,7 +85,6 @@ class Catalog {
     const wishlist    = this._getWishlist();
     const isWished    = wishlist.includes(w.id);
     const isFeatured  = w.tags?.includes('hero');
-    const ratio       = this._getAspectRatio(w.size);
     const cardTitle   = window.LANG === 'en' ? w.title : (w.title_ru || w.title);
     const cardSub     = window.LANG === 'en' ? w.title : w.title_ru;
 
@@ -99,7 +92,7 @@ class Catalog {
       <article class="work-card${isFeatured ? ' work-card--featured' : ''}" data-id="${w.id}" role="button" tabindex="0" aria-label="${this._t('Открыть работу', 'Open work')}: ${w.title}">
         ${isFeatured ? `<span class="work-card__badge">${this._t('Флагман коллекции', 'Collection hero')}</span>` : ''}
         <button class="work-card__wish${isWished ? ' is-wished' : ''}" data-wish="${w.id}" aria-label="${this._t('В избранное', 'Wishlist')}" title="${this._t('В избранное', 'Add to wishlist')}">♡</button>
-        <div class="work-card__img" style="aspect-ratio:${ratio}">
+        <div class="work-card__img">
           ${this._imageHTML(w.image, w.title)}
         </div>
         <div class="work-card__body">
