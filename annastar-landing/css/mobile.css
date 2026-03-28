@@ -55,7 +55,6 @@
 
   /* Featured card */
   .work-card--featured { grid-column: span 1; }
-  .work-card--featured .work-card__img { height: 320px; }
 
   /* Catalog */
   .catalog { padding: 64px 0; }
