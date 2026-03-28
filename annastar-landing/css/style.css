@@ -336,98 +336,88 @@ ul { list-style: none; }
   color: var(--color-white);
 }
 
+/* Masonry-колонки */
 .catalog__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 28px;
+  columns: 3;
+  column-gap: 20px;
 }
 
 /* CARD */
 .work-card {
-  background: var(--color-white);
-  border-radius: var(--radius);
+  break-inside: avoid;
+  display: block;
+  margin-bottom: 20px;
+  border-radius: 6px;
   overflow: hidden;
-  box-shadow: var(--shadow);
-  transition: transform var(--transition), box-shadow var(--transition);
   cursor: pointer;
+  position: relative;
+  background: transparent;
+  transition: transform 0.3s ease;
 }
-.work-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
-}
+.work-card:hover { transform: translateY(-3px); }
 
 .work-card__img {
   overflow: hidden;
-  background: var(--color-bg-alt, #2a2520);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* По умолчанию — вертикальный формат */
-  aspect-ratio: 3 / 4;
-}
-/* Горизонтальные картины */
-.work-card--landscape .work-card__img {
-  aspect-ratio: 4 / 3;
-}
-/* Квадратные / круглые */
-.work-card--square .work-card__img {
-  aspect-ratio: 1 / 1;
+  width: 100%;
+  display: block;
+  /* aspect-ratio задаётся inline из size работы */
 }
 .work-card__img img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  transition: transform 0.4s ease;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.45s ease;
 }
 .work-card:hover .work-card__img img { transform: scale(1.04); }
 
-.work-card__body { padding: 20px; }
+/* Подпись под изображением */
+.work-card__body {
+  padding: 10px 4px 4px;
+}
 
 .work-card__title {
   font-family: var(--font-heading);
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 600;
-  margin-bottom: 6px;
+  margin-bottom: 2px;
+  color: var(--color-text);
+  letter-spacing: 0.01em;
 }
 
 .work-card__title-ru {
-  font-size: 13px;
+  font-size: 12px;
   font-style: italic;
   color: var(--color-text-light);
   margin-bottom: 6px;
-}
-
-.work-card__meta {
-  font-size: 13px;
-  color: var(--color-text-light);
-  margin-bottom: 12px;
 }
 
 .work-card__footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 6px;
 }
 
 .work-card__price {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--color-primary);
 }
 
 .work-card__status {
-  font-size: 12px;
-  padding: 4px 10px;
+  font-size: 11px;
+  padding: 3px 9px;
   border-radius: 100px;
   font-weight: 600;
 }
 .work-card__status--available {
-  background: #e6f4ea;
-  color: #2e7d32;
+  background: rgba(46,125,50,0.15);
+  color: #7ec880;
 }
 .work-card__status--sold {
-  background: #fce8e8;
-  color: #c62828;
+  background: rgba(198,40,40,0.15);
+  color: #e08080;
 }
 
 /* ===========================================
@@ -956,52 +946,46 @@ ul { list-style: none; }
 
 .work-card__wish {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 10px;
+  right: 10px;
   z-index: 2;
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.9);
-  border: none;
-  font-size: 16px;
+  background: rgba(26,22,18,0.7);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.15);
+  font-size: 15px;
   line-height: 1;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: var(--transition);
-  color: var(--color-text-light);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  transition: opacity 0.2s, background 0.2s;
+  color: rgba(255,255,255,0.7);
   opacity: 0;
 }
-
 .work-card:hover .work-card__wish { opacity: 1; }
-.work-card__wish.is-wished { opacity: 1; color: #c0392b; }
+.work-card__wish.is-wished { opacity: 1; color: #e07070; }
 
 .work-card__badge {
   position: absolute;
-  top: 12px;
-  left: 12px;
+  top: 10px;
+  left: 10px;
   z-index: 2;
   background: var(--gold-mid);
   color: #fff;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 4px 12px;
+  padding: 4px 10px;
   border-radius: 100px;
 }
 
-.work-card--featured {
-  grid-column: span 2;
-}
-
-.work-card--featured .work-card__img {
-  aspect-ratio: 3 / 4;
-  background: var(--color-bg-alt, #2a2520);
-}
+/* В masonry featured — не спанит, просто чуть шире через column-span:all невозможно,
+   поэтому featured выделяется только бейджем и крупным изображением */
+.work-card--featured { /* ничего лишнего */ }
 
 /* ===========================================
    FOOTER — SUBSCRIBE

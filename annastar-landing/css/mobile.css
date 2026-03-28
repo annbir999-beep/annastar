@@ -22,6 +22,9 @@
   .atwork__inner { grid-template-columns: 1fr; gap: 40px; }
   .atwork__title { text-align: center; }
   .atwork__photo { max-width: 480px; margin: 0 auto; }
+
+  /* Catalog — 2 колонки на планшете */
+  .catalog__grid { columns: 2; column-gap: 16px; }
 }
 
 /* --- MOBILE: ≤ 768px --- */
@@ -53,12 +56,11 @@
   .order__right { padding: 32px 24px 48px; }
   .order__stats { gap: 20px; }
 
-  /* Featured card */
-  .work-card--featured { grid-column: span 1; }
 
   /* Catalog */
   .catalog { padding: 64px 0; }
-  .catalog__grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+  .catalog__grid { columns: 2; column-gap: 12px; }
+  .work-card { margin-bottom: 12px; }
   .catalog__filters { gap: 8px; }
   .filter-btn { padding: 6px 14px; font-size: 13px; }
 
@@ -99,7 +101,7 @@
   .commission__steps { grid-template-columns: 1fr; }
   .reviews__grid { grid-template-columns: 1fr; }
 
-  .catalog__grid { grid-template-columns: 1fr; }
+  .catalog__grid { columns: 1; }
 
   .quiz__result-cards { grid-template-columns: 1fr; }
 

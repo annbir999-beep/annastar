@@ -52,34 +52,22 @@ class Catalog {
     }
   }
 
-  // Возвращает 'landscape' | 'square' | 'portrait'
-  _getOrientation(size) {
-    if (/^Ø/i.test(size)) return 'square';
+  // "50×70 cm" → "50 / 70", "Ø55 cm" → "1 / 1"
+  _getAspectRatio(size) {
+    if (/^Ø/i.test(size)) return '1 / 1';
     const m = size.match(/(\d+)[×x](\d+)/);
-    if (!m) return 'portrait';
-    const w = parseInt(m[1]), h = parseInt(m[2]);
-    if (w > h) return 'landscape';
-    if (w === h) return 'square';
-    return 'portrait';
-  }
-
-  // Группирует: сначала горизонтальные, потом квадратные, потом вертикальные
-  _sortByOrientation(works) {
-    const rank = { landscape: 0, square: 1, portrait: 2 };
-    return [...works].sort((a, b) =>
-      rank[this._getOrientation(a.size)] - rank[this._getOrientation(b.size)]
-    );
+    return m ? `${m[1]} / ${m[2]}` : '3 / 4';
   }
 
   _renderCards(works) {
     if (works.length === 0) {
-      this.grid.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:var(--color-text-light)">
+      this.grid.innerHTML = `<p style="column-span:all;text-align:center;color:var(--color-text-light)">
         Работ в этой категории пока нет.
       </p>`;
       return;
     }
 
-    this.grid.innerHTML = this._sortByOrientation(works).map(w => this._cardHTML(w)).join('');
+    this.grid.innerHTML = works.map(w => this._cardHTML(w)).join('');
 
     // Анимация появления
     this.grid.querySelectorAll('.work-card').forEach((card, i) => {
@@ -103,27 +91,24 @@ class Catalog {
     const wishlist    = this._getWishlist();
     const isWished    = wishlist.includes(w.id);
     const isFeatured  = w.tags?.includes('hero');
-    const orientation = this._getOrientation(w.size);
+    const ratio       = this._getAspectRatio(w.size);
     const cardTitle   = window.LANG === 'en' ? w.title : (w.title_ru || w.title);
     const cardSub     = window.LANG === 'en' ? w.title : w.title_ru;
-    const orientClass = orientation !== 'portrait' ? ` work-card--${orientation}` : '';
 
     return `
-      <article class="work-card${isFeatured ? ' work-card--featured' : ''}${orientClass}" data-id="${w.id}" role="button" tabindex="0" aria-label="${this._t('Открыть работу', 'Open work')}: ${w.title}">
+      <article class="work-card${isFeatured ? ' work-card--featured' : ''}" data-id="${w.id}" role="button" tabindex="0" aria-label="${this._t('Открыть работу', 'Open work')}: ${w.title}">
         ${isFeatured ? `<span class="work-card__badge">${this._t('Флагман коллекции', 'Collection hero')}</span>` : ''}
         <button class="work-card__wish${isWished ? ' is-wished' : ''}" data-wish="${w.id}" aria-label="${this._t('В избранное', 'Wishlist')}" title="${this._t('В избранное', 'Add to wishlist')}">♡</button>
-        <div class="work-card__img">
+        <div class="work-card__img" style="aspect-ratio:${ratio}">
           ${this._imageHTML(w.image, w.title)}
         </div>
         <div class="work-card__body">
           <h3 class="work-card__title">${cardTitle}</h3>
           ${cardSub && cardSub !== cardTitle ? `<p class="work-card__title-ru">${cardSub}</p>` : ''}
-          <p class="work-card__meta">${w.size} • ${w.year}</p>
           <div class="work-card__footer">
             <span class="work-card__price">${w.price_rub.toLocaleString('ru-RU')} ₽</span>
             <span class="work-card__status ${statusClass}">${statusText}</span>
           </div>
-          <p class="work-card__cert">✦ ${this._t('Сертификат подлинности', 'Certificate of authenticity')}</p>
         </div>
       </article>
     `;
