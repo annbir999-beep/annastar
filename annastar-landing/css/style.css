@@ -419,6 +419,244 @@ ul { list-style: none; }
 }
 
 /* ===========================================
+   TRY ON
+   =========================================== */
+.tryon { padding: 100px 0; }
+
+.tryon__intro {
+  text-align: center;
+  color: var(--color-text-light);
+  max-width: 560px;
+  margin: 0 auto 52px;
+  line-height: 1.65;
+}
+
+/* ─── Панели выбора (шаги 1–2) ─── */
+.tryon__panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 36px;
+}
+
+.tryon__step-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+  margin-bottom: 20px;
+}
+.tryon__step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--gold-mid);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Сетка миниатюр картин */
+.tryon__works {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 10px;
+  max-height: 340px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.tryon__works::-webkit-scrollbar { width: 4px; }
+.tryon__works::-webkit-scrollbar-track { background: var(--color-bg-alt); border-radius: 2px; }
+.tryon__works::-webkit-scrollbar-thumb { background: var(--gold-mid); border-radius: 2px; }
+
+.tryon__thumb {
+  border: 2px solid transparent;
+  border-radius: 6px;
+  overflow: hidden;
+  padding: 0;
+  background: var(--color-bg-alt);
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+  aspect-ratio: 1 / 1;
+}
+.tryon__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s;
+}
+.tryon__thumb:hover { border-color: var(--gold-light); transform: translateY(-2px); }
+.tryon__thumb.is-active { border-color: var(--gold-mid); box-shadow: 0 0 0 1px var(--gold-mid); }
+
+/* Зона загрузки фото */
+.tryon__upload {
+  display: block;
+  border: 2px dashed var(--color-border);
+  border-radius: 12px;
+  height: 340px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.tryon__upload:hover,
+.tryon__upload.is-drag { border-color: var(--gold-mid); background: rgba(181,128,79,0.05); }
+
+.tryon__upload-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 10px;
+  padding: 20px;
+}
+.tryon__upload-icon {
+  font-size: 36px;
+  color: var(--color-text-muted);
+  line-height: 1;
+}
+.tryon__upload-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text-light);
+  text-align: center;
+}
+.tryon__upload-hint {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.tryon__room-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.tryon__upload-change {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(26,22,18,0.75);
+  backdrop-filter: blur(6px);
+  text-align: center;
+  padding: 10px;
+  font-size: 13px;
+  color: var(--gold-light);
+  font-weight: 500;
+  transform: translateY(100%);
+  transition: transform 0.2s;
+}
+.tryon__upload:hover .tryon__upload-change { transform: translateY(0); }
+
+/* Кнопка старта */
+.tryon__start-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+}
+.tryon__start { min-width: 200px; }
+.tryon__start:disabled { opacity: 0.4; cursor: not-allowed; }
+.tryon__start-hint {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+/* ─── Редактор ─── */
+.tryon__editor {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 32px;
+  align-items: start;
+}
+
+.tryon__canvas-wrap { position: relative; }
+
+#tryonCanvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  cursor: default;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+}
+.tryon__canvas-hint {
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+/* Боковая панель редактора */
+.tryon__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: sticky;
+  top: 24px;
+}
+
+.tryon__sel-card {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: var(--color-bg-alt);
+  border-radius: 10px;
+  padding: 14px;
+}
+.tryon__sel-img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+.tryon__sel-title {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.tryon__sel-size {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+}
+.tryon__sel-price {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.tryon__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Золотая кнопка «Купить» */
+.btn--gold {
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-mid) 100%);
+  color: #fff;
+  border: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.btn--gold:hover { background: linear-gradient(135deg, var(--gold-mid) 0%, var(--gold-dark) 100%); color: #fff; }
+
+/* ===========================================
    MOCKUPS CAROUSEL
    =========================================== */
 .mockups {

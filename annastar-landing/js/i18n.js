@@ -61,6 +61,11 @@ const I18N = {
     'commission.info.del.value':   'по всей России',
     'commission.cta':              'Обсудить заказ',
 
+    // Try on
+    'tryon.eyebrow': 'Примерка',
+    'tryon.title':   'Примерь картину на свою стену',
+    'tryon.intro':   'Выбери работу из каталога и загрузи фото своей комнаты — увидишь, как она будет выглядеть у тебя дома',
+
     // Reviews
     'reviews.eyebrow': 'Отзывы коллекционеров',
     'reviews.title':   'Говорят покупатели',
@@ -151,6 +156,11 @@ const I18N = {
     'commission.info.del.label':   'Shipping',
     'commission.info.del.value':   'Russia & worldwide',
     'commission.cta':              'Discuss a commission',
+
+    // Try on
+    'tryon.eyebrow': 'Virtual Try-On',
+    'tryon.title':   'See the painting on your wall',
+    'tryon.intro':   'Select a work from the catalog and upload a photo of your room — see how it will look in your home',
 
     // Reviews
     'reviews.eyebrow': 'Collector Reviews',
