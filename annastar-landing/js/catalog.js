@@ -80,26 +80,48 @@ class Catalog {
   }
 
   _cardHTML(w) {
-    const statusClass = w.available ? 'work-card__status--available' : 'work-card__status--sold';
-    const statusText  = w.available ? this._t('В наличии', 'Available') : this._t('Продана', 'Sold');
-    const wishlist    = this._getWishlist();
-    const isWished    = wishlist.includes(w.id);
-    const isFeatured  = w.tags?.includes('hero');
-    const cardTitle   = window.LANG === 'en' ? w.title : (w.title_ru || w.title);
-    const cardSub     = window.LANG === 'en' ? w.title : w.title_ru;
+    const isConcept  = w.concept === true;
+    const isFeatured = w.tags?.includes('hero');
+    const isNew      = w.year >= 2026 && !isFeatured && !isConcept;
+
+    const statusClass = isConcept   ? 'work-card__status--concept'
+      : w.available   ? 'work-card__status--available'
+      :                 'work-card__status--sold';
+    const statusText  = isConcept   ? this._t('Под заказ', 'Commission')
+      : w.available   ? this._t('В наличии', 'Available')
+      :                 this._t('Продана', 'Sold');
+
+    let badgeHTML = '';
+    if (isConcept)       badgeHTML = `<span class="work-card__badge work-card__badge--concept">${this._t('Под заказ', 'Commission')}</span>`;
+    else if (isFeatured) badgeHTML = `<span class="work-card__badge">${this._t('Флагман коллекции', 'Collection hero')}</span>`;
+    else if (isNew)      badgeHTML = `<span class="work-card__badge work-card__badge--new">${this._t('Новинка', 'New')}</span>`;
+
+    const priceHTML = isConcept && w.formats?.length
+      ? `${this._t('от', 'from')} ${w.formats[0].price_rub.toLocaleString('ru-RU')} ₽`
+      : w.price_rub ? `${w.price_rub.toLocaleString('ru-RU')} ₽` : '';
+
+    const wishlist  = this._getWishlist();
+    const isWished  = wishlist.includes(w.id);
+    const cardTitle = window.LANG === 'en' ? w.title : (w.title_ru || w.title);
+    const cardSub   = window.LANG === 'en' ? w.title : w.title_ru;
 
     return `
-      <article class="work-card${isFeatured ? ' work-card--featured' : ''}" data-id="${w.id}" role="button" tabindex="0" aria-label="${this._t('Открыть работу', 'Open work')}: ${w.title}">
-        ${isFeatured ? `<span class="work-card__badge">${this._t('Флагман коллекции', 'Collection hero')}</span>` : ''}
-        <button class="work-card__wish${isWished ? ' is-wished' : ''}" data-wish="${w.id}" aria-label="${this._t('В избранное', 'Wishlist')}" title="${this._t('В избранное', 'Add to wishlist')}">♡</button>
+      <article class="work-card${isFeatured ? ' work-card--featured' : ''}${isConcept ? ' work-card--concept' : ''}"
+               data-id="${w.id}" role="button" tabindex="0"
+               aria-label="${this._t('Открыть работу', 'Open work')}: ${w.title}">
+        ${badgeHTML}
+        <button class="work-card__wish${isWished ? ' is-wished' : ''}" data-wish="${w.id}"
+                aria-label="${this._t('В избранное', 'Wishlist')}"
+                title="${this._t('В избранное', 'Add to wishlist')}">♡</button>
         <div class="work-card__img">
           ${this._imageHTML(w.image, w.title)}
         </div>
         <div class="work-card__body">
           <h3 class="work-card__title">${cardTitle}</h3>
           ${cardSub && cardSub !== cardTitle ? `<p class="work-card__title-ru">${cardSub}</p>` : ''}
+          ${w.materials ? `<p class="work-card__materials">${w.materials}</p>` : ''}
           <div class="work-card__footer">
-            <span class="work-card__price">${w.price_rub.toLocaleString('ru-RU')} ₽</span>
+            <span class="work-card__price">${priceHTML}</span>
             <span class="work-card__status ${statusClass}">${statusText}</span>
           </div>
         </div>
@@ -180,21 +202,63 @@ class Catalog {
   }
 
   _openModal(work) {
-    const statusClass = work.available ? 'work-card__status--available' : 'work-card__status--sold';
-    const statusText  = work.available ? this._t('В наличии', 'Available') : this._t('Продана', 'Sold');
     const modalTitle  = window.LANG === 'en' ? work.title : (work.title_ru || work.title);
     const description = window.LANG === 'en' ? (work.description_en || work.description || '') : (work.description || '');
-    const sizeLabel   = this._t('Размер', 'Size');
 
-    this.modalContent.innerHTML = `
-      <button class="modal__close" id="modalClose" aria-label="${this._t('Закрыть', 'Close')}">&times;</button>
-      <div class="modal__grid">
-        ${this._imageHTML(work.image, work.title, 'style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.1)"')}
+    // ─── Gallery ─────────────────────────────────────────────────────────────
+    const allImages = [work.image, ...(work.gallery || [])].filter(Boolean);
+    let currentIdx = 0;
+
+    const imageSection = allImages.length > 1 ? `
+      <div class="modal__gallery">
+        <div class="modal__gallery-main">
+          <img id="mgImg" src="images/works/${allImages[0]}" alt="${work.title}" loading="lazy"/>
+          <button class="modal__gallery-nav modal__gallery-prev" id="mgPrev" aria-label="${this._t('Назад', 'Previous')}">&#8249;</button>
+          <button class="modal__gallery-nav modal__gallery-next" id="mgNext" aria-label="${this._t('Вперёд', 'Next')}">&#8250;</button>
+        </div>
+        <div class="modal__gallery-thumbs">
+          ${allImages.map((img, i) => `<img src="images/works/${img}" class="modal__thumb${i===0?' is-active':''}" data-idx="${i}" loading="lazy" alt=""/>`).join('')}
+        </div>
+      </div>` : this._imageHTML(work.image, work.title, 'class="modal__single-img"');
+
+    // ─── Content: concept vs regular ─────────────────────────────────────────
+    let contentSection;
+
+    if (work.concept) {
+      const formatsHTML = (work.formats || []).map(f => `
+        <div class="modal__format-row">
+          <span class="modal__format-size">${f.size}</span>
+          <span class="modal__format-price">${this._t('от', 'from')} ${f.price_rub.toLocaleString('ru-RU')} ₽</span>
+        </div>`).join('');
+
+      contentSection = `
         <div>
-          <h2 style="font-family:var(--font-heading);font-size:26px;margin-bottom:8px">${modalTitle}</h2>
-          <p style="color:var(--color-text-light);margin-bottom:16px">${work.year} • ${work.materials}</p>
+          <span class="modal__concept-tag">${this._t('Под заказ · Световой рельеф', 'Commission · Luminous Relief')}</span>
+          <h2 class="modal__title">${modalTitle}</h2>
+          <p class="modal__meta">${work.materials}</p>
+          <p class="modal__desc">${description}</p>
+          ${work.formats?.length ? `
+            <div class="modal__formats">
+              <p class="modal__formats-title">${this._t('Форматы и цены', 'Formats & Prices')}</p>
+              <div class="modal__formats-list">${formatsHTML}</div>
+            </div>` : ''}
+          <a href="#order" class="btn btn--primary" style="width:100%;display:flex;justify-content:center;margin-top:20px"
+             onclick="catalog._closeModal()">
+            ${this._t('Заказать эту работу', 'Commission this work')}
+          </a>
+          <p class="modal__concept-note">${this._t('Обсудим детали, размер и срок', 'Details, size and timeline — by arrangement')}</p>
+        </div>`;
+    } else {
+      const statusClass = work.available ? 'work-card__status--available' : 'work-card__status--sold';
+      const statusText  = work.available ? this._t('В наличии', 'Available') : this._t('Продана', 'Sold');
+      const sizeLabel   = this._t('Размер', 'Size');
+
+      contentSection = `
+        <div>
+          <h2 class="modal__title">${modalTitle}</h2>
+          <p class="modal__meta">${work.year} • ${work.materials}</p>
           <p style="margin-bottom:8px"><strong>${sizeLabel}:</strong> ${work.size}</p>
-          <p style="margin-bottom:16px">${description}</p>
+          <p class="modal__desc">${description}</p>
           <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
             <span style="font-size:24px;font-weight:700;color:var(--color-primary)">${work.price_rub.toLocaleString('ru-RU')} ₽</span>
             <span class="work-card__status ${statusClass}">${statusText}</span>
@@ -214,13 +278,34 @@ class Catalog {
               ${this._t('Заказать похожую', 'Commission similar')}
             </a>
           `}
-        </div>
+        </div>`;
+    }
+
+    this.modalContent.innerHTML = `
+      <button class="modal__close" id="modalClose" aria-label="${this._t('Закрыть', 'Close')}">&times;</button>
+      <div class="modal__grid">
+        ${imageSection}
+        ${contentSection}
       </div>
     `;
 
-    // Повторно привязываем кнопку закрытия
-    document.getElementById('modalClose')?.addEventListener('click', () => this._closeModal());
+    // ─── Gallery controls ─────────────────────────────────────────────────────
+    if (allImages.length > 1) {
+      const img    = document.getElementById('mgImg');
+      const thumbs = this.modalContent.querySelectorAll('.modal__thumb');
 
+      const setIdx = (idx) => {
+        currentIdx = (idx + allImages.length) % allImages.length;
+        img.src = `images/works/${allImages[currentIdx]}`;
+        thumbs.forEach((t, i) => t.classList.toggle('is-active', i === currentIdx));
+      };
+
+      document.getElementById('mgPrev')?.addEventListener('click', () => setIdx(currentIdx - 1));
+      document.getElementById('mgNext')?.addEventListener('click', () => setIdx(currentIdx + 1));
+      thumbs.forEach((t, i) => t.addEventListener('click', () => setIdx(i)));
+    }
+
+    document.getElementById('modalClose')?.addEventListener('click', () => this._closeModal());
     this.modal.classList.add('is-open');
     this.modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';

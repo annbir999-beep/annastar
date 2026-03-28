@@ -6,14 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
   _initScrollReveal();
   _initCursor();
   _initSubscribeForm();
+  _initQuickNav();
 });
 
 /* ── SCROLL REVEAL ─────────────────────────────── */
 function _initScrollReveal() {
   const targets = document.querySelectorAll(
-    '.section-title, .section-eyebrow, .about__inner, .atwork__inner, ' +
+    '.section-title, .section-eyebrow, .about__inner, ' +
     '.work-card, .mockups__slide, .order__left, .order__right, ' +
-    '.atwork__tags, .footer__subscribe'
+    '.b2b__inner, .footer__subscribe'
   );
 
   targets.forEach(el => {
@@ -80,6 +81,25 @@ function _initCursor() {
     cursor.style.opacity = '1';
     follower.style.opacity = '1';
   });
+}
+
+/* ── QUICK NAV — подсветка активного раздела ───── */
+function _initQuickNav() {
+  const nav = document.getElementById('quicknav');
+  if (!nav) return;
+
+  const links = nav.querySelectorAll('.quicknav__link[href^="#"]');
+  const sections = Array.from(links).map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+
+  function setActive() {
+    const scrollY = window.scrollY + 80;
+    let current = sections[0];
+    sections.forEach(sec => { if (sec.offsetTop <= scrollY) current = sec; });
+    links.forEach(l => l.classList.toggle('is-active', l.getAttribute('href') === '#' + current?.id));
+  }
+
+  window.addEventListener('scroll', setActive, { passive: true });
+  setActive();
 }
 
 /* ── FOOTER SUBSCRIBE ──────────────────────────── */

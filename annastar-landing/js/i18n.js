@@ -13,7 +13,7 @@ const I18N = {
 
     // About
     'about.title': 'О художнике',
-    'about.p1': 'Anna Biryukova — современный художник, работающий в технике mixed media. Её язык сочетает геометрическую структуру с органическим движением, создавая выразительные композиции, которые передают силу, гармонию и трансформацию.',
+    'about.p1': 'Anna Biryukova — современный художник, работающий в авторской технике <strong>«Световой рельеф»</strong>. Её язык сочетает геометрическую структуру с органическим движением, создавая выразительные композиции, которые передают силу, гармонию и трансформацию.',
     'about.p2': 'В своём многоэтапном процессе Анна создаёт объёмные работы с использованием многослойного акрила, смолы, сусального золота, зеркальных элементов, стеклянных текстур, страз и декоративных камней. Эти материалы формируют рельефные поверхности, взаимодействующие со светом и открывающие новые нюансы с каждого угла обзора.',
     'about.fact1': 'Вдохновение — животные, ботанические мотивы и символические образы',
     'about.fact2': 'Каждая работа создаётся вручную и может занимать несколько недель',
@@ -51,14 +51,14 @@ const I18N = {
     'commission.step3.title':      'Создание',
     'commission.step3.text':       'Работа пишется от 2 до 6 недель в зависимости от размера и сложности. Делаю промежуточные фото — вы видите, как рождается картина.',
     'commission.step4.title':      'Доставка',
-    'commission.step4.text':       'Бережная упаковка, доставка по России и за рубеж. В комплекте — сертификат подлинности и авторская подпись на обороте.',
+    'commission.step4.text':       'Работа упаковывается в жёсткий короб с пенной прокладкой — доходит в целости. Доставляю по России (СДЭК, Почта России, ТК) и за рубеж по договорённости. В комплекте — сертификат подлинности и подпись на обороте.',
     'commission.info.cost.label':  'Стоимость',
     'commission.info.cost.value':  'от 30 000 ₽',
     'commission.info.time.label':  'Срок',
     'commission.info.time.value':  '2–6 недель',
     'commission.info.prepay.label':'Предоплата',
     'commission.info.del.label':   'Доставка',
-    'commission.info.del.value':   'по всей России',
+    'commission.info.del.value':   'Россия и за рубеж',
     'commission.cta':              'Обсудить заказ',
 
     // Try on
@@ -83,7 +83,7 @@ const I18N = {
     'order.stat2.label':    'оригиналы',
     'order.stat3.label':    'время ответа',
     'order.g1':             '✦ Сертификат подлинности с каждой работой',
-    'order.g2':             '✦ Бережная упаковка и доставка по России',
+    'order.g2':             '✦ Бережная упаковка и доставка по России и за рубеж',
     'order.g3':             '✦ Картина на заказ — обсудим лично',
     'order.form.name.label':  'Ваше имя *',
     'order.form.phone.label': 'Телефон *',
@@ -92,6 +92,38 @@ const I18N = {
     'order.form.msg.ph':      'Расскажите об интерьере, размере, цветовых предпочтениях...',
     'order.form.submit':      'Отправить заявку',
     'order.form.note':        'Отвечу в течение 2 часов в рабочее время',
+
+    // Quick nav
+    'nav.catalog':    'Каталог',
+    'nav.about':      'О художнике',
+    'nav.commission': 'На заказ',
+    'nav.tryon':      'Примерка',
+    'nav.designers':  'Дизайнерам',
+    'nav.contact':    'Связаться',
+
+    // Interior photo CTA
+    'interior.cta.text': 'Не уверены, впишется ли работа в ваш интерьер?',
+    'interior.cta.btn':  'Пришлите фото — подберём вместе',
+
+    // Delivery table
+    'delivery.title':           'Доставка и гарантии',
+    'delivery.ru.label':        'По России',
+    'delivery.ru.value':        'СДЭК, Почта России, транспортные компании — по тарифам перевозчика',
+    'delivery.intl.label':      'За рубеж',
+    'delivery.intl.value':      'Любым удобным способом, по договорённости',
+    'delivery.pack.label':      'Упаковка',
+    'delivery.pack.value':      'Жёсткий короб, пенная прокладка, угловые протекторы — работа не сдвинется в пути',
+    'delivery.guarantee.label': 'Гарантия',
+    'delivery.guarantee.value': 'Если работа пришла повреждённой — заменю или верну деньги',
+
+    // B2B
+    'b2b.eyebrow': 'Профессионалам',
+    'b2b.title':   'Дизайнерам и архитекторам',
+    'b2b.text':    'Работаю с интерьерными проектами напрямую: подбираю работы под концепцию, адаптирую размер и палитру под план помещения, выставляю счёт для юридических лиц. Если вы ведёте объект и ищете авторское искусство — давайте обсудим условия.',
+    'b2b.cta':     'Обсудить проект',
+
+    // Promo banner (включить: убрать style="display:none" в HTML)
+    'promo.text': '✦ Новые работы в коллекции — загляните в каталог',
 
     // Footer
     'footer.subscribe.title': 'Узнавайте о новых работах первыми',
@@ -109,7 +141,7 @@ const I18N = {
 
     // About
     'about.title': 'About the Artist',
-    'about.p1': 'Anna Biryukova is a contemporary artist working in mixed media. Her visual language combines geometric structure with organic movement, creating expressive compositions that convey strength, harmony and transformation.',
+    'about.p1': 'Anna Biryukova is a contemporary artist working in her signature <strong>"Luminous Relief"</strong> technique. Her visual language combines geometric structure with organic movement, creating expressive compositions that convey strength, harmony and transformation.',
     'about.p2': 'In her multi-stage process, Anna creates sculptural works using layered acrylic, resin, gold leaf, mirror elements, glass textures, rhinestones and decorative stones. These materials form relief surfaces that interact with light, revealing new nuances from every angle.',
     'about.fact1': 'Inspiration — animals, botanical motifs and symbolic imagery',
     'about.fact2': 'Each work is crafted by hand and may take several weeks',
@@ -147,14 +179,14 @@ const I18N = {
     'commission.step3.title':      'Creation',
     'commission.step3.text':       'The painting takes 2 to 6 weeks depending on size and complexity. I share progress photos so you can watch the artwork come to life.',
     'commission.step4.title':      'Delivery',
-    'commission.step4.text':       "Careful packaging, shipping within Russia and internationally. Includes a certificate of authenticity and artist's signature on the reverse.",
+    'commission.step4.text':       "The work is packed in a rigid crate with foam padding — it arrives intact. Shipping across Russia (CDEK, Russian Post, freight carriers) and internationally by arrangement. Includes a certificate of authenticity and artist's signature on the reverse.",
     'commission.info.cost.label':  'Price',
     'commission.info.cost.value':  'from 30 000 ₽',
     'commission.info.time.label':  'Timeline',
     'commission.info.time.value':  '2–6 weeks',
     'commission.info.prepay.label':'Deposit',
     'commission.info.del.label':   'Shipping',
-    'commission.info.del.value':   'Russia & worldwide',
+    'commission.info.del.value':   'Russia & international',
     'commission.cta':              'Discuss a commission',
 
     // Try on
@@ -179,7 +211,7 @@ const I18N = {
     'order.stat2.label':    'originals',
     'order.stat3.label':    'response time',
     'order.g1':             '✦ Certificate of authenticity with every work',
-    'order.g2':             '✦ Careful packaging and delivery across Russia',
+    'order.g2':             '✦ Careful packaging and delivery — Russia & worldwide',
     'order.g3':             '✦ Custom commission — let\'s discuss personally',
     'order.form.name.label':  'Your name *',
     'order.form.phone.label': 'Phone *',
@@ -188,6 +220,38 @@ const I18N = {
     'order.form.msg.ph':      'Tell me about your interior, size, colour preferences...',
     'order.form.submit':      'Send request',
     'order.form.note':        "I'll reply within 2 hours during working hours",
+
+    // Quick nav
+    'nav.catalog':    'Catalog',
+    'nav.about':      'About',
+    'nav.commission': 'Commission',
+    'nav.tryon':      'Try On',
+    'nav.designers':  'Designers',
+    'nav.contact':    'Contact',
+
+    // Interior photo CTA
+    'interior.cta.text': 'Not sure the artwork will fit your interior?',
+    'interior.cta.btn':  'Send a photo — we\'ll find the right fit',
+
+    // Delivery table
+    'delivery.title':           'Shipping & Guarantees',
+    'delivery.ru.label':        'Within Russia',
+    'delivery.ru.value':        'CDEK, Russian Post, freight carriers — at carrier rates',
+    'delivery.intl.label':      'International',
+    'delivery.intl.value':      'Any convenient method, by arrangement',
+    'delivery.pack.label':      'Packaging',
+    'delivery.pack.value':      'Rigid crate, foam padding, corner protectors — the work won\'t shift in transit',
+    'delivery.guarantee.label': 'Guarantee',
+    'delivery.guarantee.value': 'If the work arrives damaged — I\'ll replace it or issue a full refund',
+
+    // B2B
+    'b2b.eyebrow': 'For Professionals',
+    'b2b.title':   'Designers & Architects',
+    'b2b.text':    'I work directly with interior projects: selecting works to match the concept, adapting size and palette to floor plans, and invoicing for legal entities. If you\'re working on a project and looking for original art — let\'s talk.',
+    'b2b.cta':     'Discuss a project',
+
+    // Promo banner
+    'promo.text': '✦ New works added to the collection — explore the catalog',
 
     // Footer
     'footer.subscribe.title': 'Be the first to know about new works',

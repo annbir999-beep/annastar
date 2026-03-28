@@ -11,10 +11,18 @@
 </head>
 <body>
 
+  <!-- PROMO BANNER (убрать style="display:none" чтобы показать) -->
+  <div class="promo-banner" id="promoBanner" style="display:none">
+    <div class="container promo-banner__inner">
+      <span data-i18n="promo.text">✦ Новые работы в коллекции — загляните в каталог</span>
+      <button class="promo-banner__close" onclick="document.getElementById('promoBanner').style.display='none'" aria-label="Закрыть">×</button>
+    </div>
+  </div>
+
   <!-- HERO -->
   <section class="hero" id="hero">
     <div class="hero__video-bg">
-      <video autoplay muted loop playsinline preload="auto" poster="images/mockups/IMG_5982.JPG">
+      <video autoplay muted loop playsinline preload="auto">
         <source src="images/mockups/1768654768388184.mp4" type="video/mp4">
       </video>
       <div class="hero__overlay"></div>
@@ -27,8 +35,41 @@
         <a href="#catalog" class="btn btn--primary" data-i18n="hero.btn.catalog">Смотреть каталог</a>
         <a href="#quiz" class="btn btn--outline-light" data-i18n="hero.btn.quiz">Подобрать картину</a>
       </div>
+      <div class="hero__contacts">
+        <a href="tel:+79164779988" class="hero__contact-btn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          +7 (916) 477-99-88
+        </a>
+        <a href="https://wa.me/79164779988" target="_blank" rel="noopener" class="hero__contact-btn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.554 4.103 1.523 5.828L.044 23.164a.75.75 0 0 0 .915.915l5.336-1.479A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.498-5.24-1.369l-.374-.214-3.876 1.074 1.074-3.876-.214-.374A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          WhatsApp
+        </a>
+        <a href="https://t.me/Annastar_art" target="_blank" rel="noopener" class="hero__contact-btn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          Telegram
+        </a>
+      </div>
     </div>
   </section>
+
+  <!-- QUICK NAV -->
+  <nav class="quicknav" id="quicknav" aria-label="Разделы сайта">
+    <div class="container">
+      <div class="quicknav__inner">
+        <a href="#catalog" class="quicknav__link" data-i18n="nav.catalog">Каталог</a>
+        <div class="quicknav__divider" aria-hidden="true"></div>
+        <a href="#about" class="quicknav__link" data-i18n="nav.about">О художнике</a>
+        <div class="quicknav__divider" aria-hidden="true"></div>
+        <a href="#commission" class="quicknav__link" data-i18n="nav.commission">На заказ</a>
+        <div class="quicknav__divider" aria-hidden="true"></div>
+        <a href="#tryon" class="quicknav__link" data-i18n="nav.tryon">Примерка</a>
+        <div class="quicknav__divider" aria-hidden="true"></div>
+        <a href="#b2b" class="quicknav__link" data-i18n="nav.designers">Дизайнерам</a>
+        <div class="quicknav__divider" aria-hidden="true"></div>
+        <a href="#order" class="quicknav__link" data-i18n="nav.contact">Связаться</a>
+      </div>
+    </div>
+  </nav>
 
   <!-- ABOUT -->
   <section class="about" id="about">
@@ -74,6 +115,16 @@
     </div>
   </section>
 
+  <!-- INTERIOR PHOTO CTA -->
+  <div class="interior-cta">
+    <div class="container">
+      <div class="interior-cta__inner">
+        <p data-i18n="interior.cta.text">Не уверены, впишется ли работа в ваш интерьер?</p>
+        <a href="#order" class="btn btn--outline" data-i18n="interior.cta.btn">Пришлите фото — подберём вместе</a>
+      </div>
+    </div>
+  </div>
+
   <!-- MOCKUPS -->
   <section class="mockups" id="mockups">
     <div class="container">
@@ -99,31 +150,6 @@
       <button class="mockups__arrow mockups__arrow--next" id="mockupsNext" aria-label="Вперёд">&#8594;</button>
     </div>
     <div class="mockups__dots" id="mockupsDots"></div>
-  </section>
-
-  <!-- ARTIST AT WORK -->
-  <section class="atwork" id="atwork">
-    <div class="container">
-      <div class="atwork__inner">
-        <div class="atwork__photo">
-          <img src="images/artist/freepik__-img3-img2-img1__70721.png" alt="Anna Biryukova за работой" />
-        </div>
-        <div class="atwork__text">
-          <h2 class="section-title atwork__title" data-i18n="atwork.title">Художник за работой</h2>
-          <p class="atwork__lead" data-i18n="atwork.lead">Каждая картина — это путешествие длиной в несколько недель. Анна начинает с эскиза и постепенно выстраивает слой за слоем: грунт, объёмная текстура, акрил, смола, сусальное золото, зеркальные элементы и финальные акценты из страз.</p>
-          <p data-i18n="atwork.p1">Процесс создания — медитативный и непредсказуемый. Материалы вступают в диалог между собой: смола растекается, золото ловит свет, зеркальные осколки преломляют пространство. Именно в этом взаимодействии рождается живой характер каждой работы.</p>
-          <p data-i18n="atwork.p2">Анна не использует шаблонов и не создаёт копий. Каждое полотно — единственное в своём роде. Прежде чем взять кисть, художник проводит время в тишине — чтобы почувствовать образ изнутри, а не просто перенести его на холст.</p>
-          <div class="atwork__tags">
-            <span data-i18n="atwork.tag1">Акрил</span>
-            <span data-i18n="atwork.tag2">Эпоксидная смола</span>
-            <span data-i18n="atwork.tag3">Сусальное золото</span>
-            <span data-i18n="atwork.tag4">Зеркало</span>
-            <span data-i18n="atwork.tag5">Стразы</span>
-            <span>Mixed Media</span>
-          </div>
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- COMMISSION -->
@@ -236,8 +262,29 @@
         </div>
         <div class="order__guarantees">
           <p class="order__guarantee-item" data-i18n="order.g1">✦ Сертификат подлинности с каждой работой</p>
-          <p class="order__guarantee-item" data-i18n="order.g2">✦ Бережная упаковка и доставка по России</p>
+          <p class="order__guarantee-item" data-i18n="order.g2">✦ Бережная упаковка и доставка по России и за рубеж</p>
           <p class="order__guarantee-item" data-i18n="order.g3">✦ Картина на заказ — обсудим лично</p>
+        </div>
+        <div class="delivery-table">
+          <p class="delivery-table__title" data-i18n="delivery.title">Доставка и гарантии</p>
+          <div class="delivery-table__rows">
+            <div class="delivery-table__row">
+              <span data-i18n="delivery.ru.label">По России</span>
+              <span data-i18n="delivery.ru.value">СДЭК, Почта России, транспортные компании — по тарифам перевозчика</span>
+            </div>
+            <div class="delivery-table__row">
+              <span data-i18n="delivery.intl.label">За рубеж</span>
+              <span data-i18n="delivery.intl.value">Любым удобным способом, по договорённости</span>
+            </div>
+            <div class="delivery-table__row">
+              <span data-i18n="delivery.pack.label">Упаковка</span>
+              <span data-i18n="delivery.pack.value">Жёсткий короб, пенная прокладка, угловые протекторы</span>
+            </div>
+            <div class="delivery-table__row">
+              <span data-i18n="delivery.guarantee.label">Гарантия</span>
+              <span data-i18n="delivery.guarantee.value">Если работа пришла повреждённой — заменю или верну деньги</span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="order__right">
@@ -267,6 +314,18 @@
     </div>
   </section>
 
+  <!-- B2B -->
+  <section class="b2b" id="b2b">
+    <div class="container">
+      <p class="section-eyebrow" data-i18n="b2b.eyebrow">Профессионалам</p>
+      <h2 class="section-title" data-i18n="b2b.title">Дизайнерам и архитекторам</h2>
+      <div class="b2b__inner">
+        <p class="b2b__text" data-i18n="b2b.text">Работаю с интерьерными проектами напрямую: подбираю работы под концепцию, адаптирую размер и палитру под план помещения, выставляю счёт для юридических лиц. Если вы ведёте объект и ищете авторское искусство — давайте обсудим условия.</p>
+        <a href="#order" class="btn btn--primary" data-i18n="b2b.cta">Обсудить проект</a>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
@@ -282,9 +341,13 @@
       </div>
       <div class="footer__inner">
         <p class="footer__copy" data-i18n="footer.copy">&copy; 2025 Anna Biryukova. Все права защищены.</p>
-        <div class="footer__links">
-          <a href="https://t.me/annastar" target="_blank" rel="noopener">Telegram</a>
-          <a href="https://instagram.com/annastar" target="_blank" rel="noopener">Instagram</a>
+        <div class="footer__contacts">
+          <a href="tel:+79164779988" class="footer__phone">+7 (916) 477-99-88</a>
+          <a href="https://wa.me/79164779988" target="_blank" rel="noopener" class="footer__social-btn" title="WhatsApp" aria-label="WhatsApp">WA</a>
+          <a href="https://t.me/Annastar_art" target="_blank" rel="noopener" class="footer__social-btn" title="Telegram" aria-label="Telegram">TG</a>
+          <a href="https://t.me/annastar_gallery" target="_blank" rel="noopener" class="footer__social-btn" title="Telegram-канал" aria-label="Telegram канал">ТГ</a>
+          <a href="https://vk.com/annastar_gallery" target="_blank" rel="noopener" class="footer__social-btn" title="ВКонтакте" aria-label="ВКонтакте">VK</a>
+          <a href="https://pin.it/6s3Q8vb6O" target="_blank" rel="noopener" class="footer__social-btn" title="Pinterest" aria-label="Pinterest">PI</a>
         </div>
       </div>
     </div>

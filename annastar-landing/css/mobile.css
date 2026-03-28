@@ -125,6 +125,22 @@
   .work-card:hover .work-card__img img { transform: none; }
 }
 
+/* --- НОВЫЕ СЕКЦИИ: ≤ 768px --- */
+@media (max-width: 768px) {
+  .interior-cta__inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .interior-cta__inner .btn { width: 100%; text-align: center; }
+  .b2b__inner { flex-direction: column; align-items: flex-start; gap: 24px; }
+  .b2b__inner .btn { width: 100%; text-align: center; }
+  .delivery-table__row { grid-template-columns: 90px 1fr; gap: 8px; }
+  .footer__contacts { gap: 12px; }
+  .promo-banner__inner { flex-direction: row; }
+
+  .hero__contacts { gap: 8px; }
+  .hero__contact-btn { font-size: 12px; padding: 7px 12px; }
+
+  .quicknav__link { padding: 12px 14px; font-size: 12px; }
+}
+
 /* --- PREFER REDUCED MOTION --- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

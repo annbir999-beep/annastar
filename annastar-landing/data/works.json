@@ -238,5 +238,65 @@
     "payment_link": "https://yookassa.ru/my/i/acWmeN3116-8/l",
     "available": true,
     "tags": ["zoology", "animal", "gold", "hero", "large"]
+  },
+  {
+    "id": "white-tiger",
+    "title": "White Tiger",
+    "title_ru": "Белый тигр",
+    "series": "Zoology",
+    "concept": true,
+    "available": false,
+    "year": 2026,
+    "materials": "Акрил, смола, сусальное золото, стразы, зеркальные фрагменты, рельефная текстура",
+    "description": "Белый тигр — один из четырёх небесных стражей, повелитель запада и хранитель пространства. Его белизна — не отсутствие цвета, а присутствие всех возможностей сразу. Геометрическая структура меха, огранённая кристаллами, превращает живой образ в архитектурный объект — грань между портретом и символом. Золото здесь не украшение, а язык: сила, выраженная тихо. Работа создаётся для пространств, где ценят защиту, выраженную через красоту.",
+    "description_en": "White Tiger — guardian of the west and keeper of space. Its whiteness holds all possibilities at once. Geometric faceted structure transforms a living image into an architectural object — where gold speaks quietly of power and protection.",
+    "image": "white-tiger-concept.jpg",
+    "formats": [
+      {"size": "40×50 cm", "price_rub": 60000},
+      {"size": "50×70 cm", "price_rub": 87000},
+      {"size": "60×80 cm", "price_rub": 150000},
+      {"size": "70×100 cm", "price_rub": 175000}
+    ],
+    "tags": ["zoology", "animal", "white", "gold", "concept"]
+  },
+  {
+    "id": "night-owl",
+    "title": "Night Owl",
+    "title_ru": "Ночная сова",
+    "series": "Zoology",
+    "concept": true,
+    "available": false,
+    "year": 2026,
+    "materials": "Акрил, смола, золото, серебряная гальваника, стразы, зеркальные перья, рельефная текстура",
+    "description": "Сова видит в темноте то, что другие не замечают при свете. Это образ внутреннего зрения — способности слышать тишину и читать пространство между словами. Синева ночного фона и холодный блеск серебра создают атмосферу сосредоточенности и покоя. Зеркальные перья отражают свет комнаты — работа меняется вместе с освещением, как меняется наша способность видеть в зависимости от того, насколько мы присутствуем. Для пространств, где думают.",
+    "description_en": "The owl sees in darkness what others miss in light. Mirror feathers reflect the room around them — the work shifts with every change of light, like awareness itself. Deep blue and silver for spaces where thinking happens.",
+    "image": "owl-concept.jpg",
+    "formats": [
+      {"size": "40×50 cm", "price_rub": 60000},
+      {"size": "50×70 cm", "price_rub": 87000},
+      {"size": "60×80 cm", "price_rub": 150000},
+      {"size": "70×100 cm", "price_rub": 175000}
+    ],
+    "tags": ["zoology", "animal", "blue", "silver", "concept"]
+  },
+  {
+    "id": "koi-fish",
+    "title": "Koi Fish",
+    "title_ru": "Золотой карп",
+    "series": "Relax",
+    "concept": true,
+    "available": false,
+    "year": 2026,
+    "materials": "Акрил, смола, сусальное золото, иридиевые стразы, зеркальная поверхность воды, рельефная текстура",
+    "description": "Карп кои плывёт против течения — и именно поэтому он символизирует исполнение желаний. Не то, что даётся само, а то, что завоёвывается движением. Золотая чешуя, переливающаяся иридиевыми кристаллами, создаёт ощущение живого света под водой. Зеркальная поверхность «воды» отражает окружающее пространство — картина включает комнату в себя. Это работа об изобилии, которое начинается изнутри.",
+    "description_en": "The koi swims upstream — which is why it symbolises fulfilled wishes. Not what comes easily, but what is earned through movement. Gold scales iridescent with crystal catch the light of the room, making the painting part of its surroundings.",
+    "image": "koi-fish-concept.jpg",
+    "formats": [
+      {"size": "40×60 cm", "price_rub": 65000},
+      {"size": "50×70 cm", "price_rub": 87000},
+      {"size": "60×90 cm", "price_rub": 155000},
+      {"size": "70×100 cm", "price_rub": 175000}
+    ],
+    "tags": ["relax", "concept", "gold", "red", "vertical"]
   }
 ]
