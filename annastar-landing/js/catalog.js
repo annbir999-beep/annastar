@@ -23,6 +23,17 @@ class Catalog {
     this._renderCards(this.works);
     this._bindFilters();
     this._bindModal();
+
+    document.addEventListener('langchange', () => {
+      const filtered = this.activeFilter === 'all'
+        ? this.works
+        : this.works.filter(w => w.series?.toLowerCase() === this.activeFilter);
+      this._renderCards(filtered);
+    });
+  }
+
+  _t(ru, en) {
+    return window.LANG === 'en' ? en : ru;
   }
 
   async _loadWorks() {
@@ -69,27 +80,29 @@ class Catalog {
 
   _cardHTML(w) {
     const statusClass = w.available ? 'work-card__status--available' : 'work-card__status--sold';
-    const statusText  = w.available ? 'В наличии' : 'Продана';
+    const statusText  = w.available ? this._t('В наличии', 'Available') : this._t('Продана', 'Sold');
     const wishlist    = this._getWishlist();
     const isWished    = wishlist.includes(w.id);
     const isFeatured  = w.tags?.includes('hero');
+    const cardTitle   = window.LANG === 'en' ? w.title : (w.title_ru || w.title);
+    const cardSub     = window.LANG === 'en' ? w.title : w.title_ru;
 
     return `
-      <article class="work-card${isFeatured ? ' work-card--featured' : ''}" data-id="${w.id}" role="button" tabindex="0" aria-label="Открыть работу: ${w.title}">
-        ${isFeatured ? '<span class="work-card__badge">Флагман коллекции</span>' : ''}
-        <button class="work-card__wish${isWished ? ' is-wished' : ''}" data-wish="${w.id}" aria-label="В избранное" title="В избранное">♡</button>
+      <article class="work-card${isFeatured ? ' work-card--featured' : ''}" data-id="${w.id}" role="button" tabindex="0" aria-label="${this._t('Открыть работу', 'Open work')}: ${w.title}">
+        ${isFeatured ? `<span class="work-card__badge">${this._t('Флагман коллекции', 'Collection hero')}</span>` : ''}
+        <button class="work-card__wish${isWished ? ' is-wished' : ''}" data-wish="${w.id}" aria-label="${this._t('В избранное', 'Wishlist')}" title="${this._t('В избранное', 'Add to wishlist')}">♡</button>
         <div class="work-card__img">
           ${this._imageHTML(w.image, w.title)}
         </div>
         <div class="work-card__body">
-          <h3 class="work-card__title">${w.title}</h3>
-          ${w.title_ru ? `<p class="work-card__title-ru">${w.title_ru}</p>` : ''}
+          <h3 class="work-card__title">${cardTitle}</h3>
+          ${cardSub && cardSub !== cardTitle ? `<p class="work-card__title-ru">${cardSub}</p>` : ''}
           <p class="work-card__meta">${w.size} • ${w.year}</p>
           <div class="work-card__footer">
             <span class="work-card__price">${w.price_rub.toLocaleString('ru-RU')} ₽</span>
             <span class="work-card__status ${statusClass}">${statusText}</span>
           </div>
-          <p class="work-card__cert">✦ Сертификат подлинности</p>
+          <p class="work-card__cert">✦ ${this._t('Сертификат подлинности', 'Certificate of authenticity')}</p>
         </div>
       </article>
     `;
@@ -169,34 +182,37 @@ class Catalog {
 
   _openModal(work) {
     const statusClass = work.available ? 'work-card__status--available' : 'work-card__status--sold';
-    const statusText  = work.available ? 'В наличии' : 'Продана';
+    const statusText  = work.available ? this._t('В наличии', 'Available') : this._t('Продана', 'Sold');
+    const modalTitle  = window.LANG === 'en' ? work.title : (work.title_ru || work.title);
+    const description = window.LANG === 'en' ? (work.description_en || work.description || '') : (work.description || '');
+    const sizeLabel   = this._t('Размер', 'Size');
 
     this.modalContent.innerHTML = `
-      <button class="modal__close" id="modalClose" aria-label="Закрыть">&times;</button>
+      <button class="modal__close" id="modalClose" aria-label="${this._t('Закрыть', 'Close')}">&times;</button>
       <div class="modal__grid">
         ${this._imageHTML(work.image, work.title, 'style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.1)"')}
         <div>
-          <h2 style="font-family:var(--font-heading);font-size:26px;margin-bottom:8px">${work.title}</h2>
+          <h2 style="font-family:var(--font-heading);font-size:26px;margin-bottom:8px">${modalTitle}</h2>
           <p style="color:var(--color-text-light);margin-bottom:16px">${work.year} • ${work.materials}</p>
-          <p style="margin-bottom:8px"><strong>Размер:</strong> ${work.size}</p>
-          <p style="margin-bottom:16px">${work.description || ''}</p>
+          <p style="margin-bottom:8px"><strong>${sizeLabel}:</strong> ${work.size}</p>
+          <p style="margin-bottom:16px">${description}</p>
           <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
             <span style="font-size:24px;font-weight:700;color:var(--color-primary)">${work.price_rub.toLocaleString('ru-RU')} ₽</span>
             <span class="work-card__status ${statusClass}">${statusText}</span>
           </div>
           ${work.available && work.payment_link ? `
             <button class="btn btn--primary" style="width:100%" onclick="window.open('${work.payment_link}', '_blank')">
-              Купить эту работу
+              ${this._t('Купить эту работу', 'Buy this artwork')}
             </button>
           ` : work.available ? `
             <a href="#order" class="btn btn--outline" style="width:100%;display:flex;justify-content:center"
                onclick="catalog._closeModal()">
-              Узнать цену
+              ${this._t('Узнать цену', 'Enquire')}
             </a>
           ` : `
             <a href="#order" class="btn btn--outline" style="width:100%;display:flex;justify-content:center"
                onclick="catalog._closeModal()">
-              Заказать похожую
+              ${this._t('Заказать похожую', 'Commission similar')}
             </a>
           `}
         </div>

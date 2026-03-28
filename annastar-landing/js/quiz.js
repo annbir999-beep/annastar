@@ -5,42 +5,46 @@
 const QUIZ_CONFIG = [
   {
     id: 'style',
-    question: 'Какой образ вам ближе?',
+    question:    'Какой образ вам ближе?',
+    question_en: 'Which imagery speaks to you?',
     options: [
-      { value: 'botanica',    icon: '🌿', label: 'Природа и цветы' },
-      { value: 'zoology',     icon: '🦁', label: 'Животные' },
-      { value: 'abstraction', icon: '✦',  label: 'Абстракция' },
-      { value: 'relax',       icon: '☽',  label: 'Медитация' },
+      { value: 'botanica',    icon: '🌿', label: 'Природа и цветы',  label_en: 'Nature & flowers' },
+      { value: 'zoology',     icon: '🦁', label: 'Животные',         label_en: 'Animals' },
+      { value: 'abstraction', icon: '✦',  label: 'Абстракция',       label_en: 'Abstraction' },
+      { value: 'relax',       icon: '☽',  label: 'Медитация',        label_en: 'Meditation' },
     ],
   },
   {
     id: 'palette',
-    question: 'Какая цветовая палитра подойдёт вашему интерьеру?',
+    question:    'Какая цветовая палитра подойдёт вашему интерьеру?',
+    question_en: 'Which colour palette suits your interior?',
     options: [
-      { value: 'warm',    icon: '✦', label: 'Тёплые — золото, терракот' },
-      { value: 'cool',    icon: '◈', label: 'Холодные — серебро, синий' },
-      { value: 'neutral', icon: '○', label: 'Нейтральные — белый, зелёный' },
-      { value: 'bright',  icon: '◉', label: 'Яркие акценты' },
+      { value: 'warm',    icon: '✦', label: 'Тёплые — золото, терракот',   label_en: 'Warm — gold, terracotta' },
+      { value: 'cool',    icon: '◈', label: 'Холодные — серебро, синий',   label_en: 'Cool — silver, blue' },
+      { value: 'neutral', icon: '○', label: 'Нейтральные — белый, зелёный',label_en: 'Neutral — white, green' },
+      { value: 'bright',  icon: '◉', label: 'Яркие акценты',               label_en: 'Bold accents' },
     ],
   },
   {
     id: 'size',
-    question: 'Какой размер вам нужен?',
+    question:    'Какой размер вам нужен?',
+    question_en: 'What size are you looking for?',
     options: [
-      { value: 'small',  icon: '▫', label: 'Небольшой — до 40×50 см' },
-      { value: 'medium', icon: '▪', label: 'Средний — 50×70 до 60×80 см' },
-      { value: 'large',  icon: '■', label: 'Большой — 70×100 и более' },
-      { value: 'any',    icon: '✦', label: 'Размер не важен' },
+      { value: 'small',  icon: '▫', label: 'Небольшой — до 40×50 см',      label_en: 'Small — up to 40×50 cm' },
+      { value: 'medium', icon: '▪', label: 'Средний — 50×70 до 60×80 см',  label_en: 'Medium — 50×70 to 60×80 cm' },
+      { value: 'large',  icon: '■', label: 'Большой — 70×100 и более',     label_en: 'Large — 70×100 and above' },
+      { value: 'any',    icon: '✦', label: 'Размер не важен',              label_en: 'Size doesn\'t matter' },
     ],
   },
   {
     id: 'budget',
-    question: 'Какой бюджет вы рассматриваете?',
+    question:    'Какой бюджет вы рассматриваете?',
+    question_en: 'What is your budget?',
     options: [
-      { value: 'low',  icon: '◇', label: 'До 35 000 ₽' },
-      { value: 'mid',  icon: '◆', label: '35 000 — 90 000 ₽' },
-      { value: 'high', icon: '❖', label: '90 000 — 180 000 ₽' },
-      { value: 'vip',  icon: '✦', label: 'Без ограничений' },
+      { value: 'low',  icon: '◇', label: 'До 35 000 ₽',          label_en: 'Up to 35 000 ₽' },
+      { value: 'mid',  icon: '◆', label: '35 000 — 90 000 ₽',    label_en: '35 000 — 90 000 ₽' },
+      { value: 'high', icon: '❖', label: '90 000 — 180 000 ₽',   label_en: '90 000 — 180 000 ₽' },
+      { value: 'vip',  icon: '✦', label: 'Без ограничений',       label_en: 'No limit' },
     ],
   },
 ];
@@ -62,7 +66,31 @@ class Quiz {
     this.step    = 0;
     this.works   = [];
 
-    this._loadWorks().then(() => this._render());
+    this._loadWorks().then(() => {
+      this._render();
+
+      document.addEventListener('langchange', () => {
+        const savedAnswers = { ...this.answers };
+        const savedStep    = this.step;
+        this._render();
+        this.answers = savedAnswers;
+        this.step    = savedStep;
+        this._updateStep();
+        QUIZ_CONFIG.forEach((q, i) => {
+          if (savedAnswers[q.id]) {
+            const stepEl = this.container.querySelector(`.quiz__step[data-index="${i}"]`);
+            stepEl?.querySelector(`[data-value="${savedAnswers[q.id]}"]`)?.classList.add('is-selected');
+            const nextBtn = stepEl?.querySelector('.quiz__btn-next');
+            if (nextBtn) nextBtn.disabled = false;
+          }
+        });
+      });
+    });
+  }
+
+  _q(q, field) {
+    const enKey = field + '_en';
+    return window.LANG === 'en' && q[enKey] ? q[enKey] : q[field];
   }
 
   async _loadWorks() {
@@ -75,10 +103,11 @@ class Quiz {
   }
 
   _render() {
+    const isEn = window.LANG === 'en';
     this.container.innerHTML = `
       <div class="quiz__progress">
         <div class="quiz__progress-text">
-          <span class="quiz__step-label">Вопрос 1 из ${QUIZ_CONFIG.length}</span>
+          <span class="quiz__step-label">${isEn ? 'Question' : 'Вопрос'} 1 ${isEn ? 'of' : 'из'} ${QUIZ_CONFIG.length}</span>
           <span class="quiz__step-percent">0%</span>
         </div>
         <div class="quiz__progress-bar">
@@ -91,12 +120,12 @@ class Quiz {
       </div>
 
       <div class="quiz__result" id="quizResult">
-        <h3 class="quiz__result-title">Ваша подборка готова!</h3>
-        <p class="quiz__result-subtitle">Вот работы, которые подойдут именно вам:</p>
+        <h3 class="quiz__result-title">${isEn ? 'Your selection is ready!' : 'Ваша подборка готова!'}</h3>
+        <p class="quiz__result-subtitle">${isEn ? 'Here are the works that suit you best:' : 'Вот работы, которые подойдут именно вам:'}</p>
         <div class="quiz__result-cards" id="quizResultCards"></div>
         <div class="quiz__result-cta">
-          <a href="#order" class="btn btn--primary">Заказать картину</a>
-          <button class="quiz__restart" id="quizRestart">Пройти квиз заново</button>
+          <a href="#order" class="btn btn--primary">${isEn ? 'Order a painting' : 'Заказать картину'}</a>
+          <button class="quiz__restart" id="quizRestart">${isEn ? 'Retake the quiz' : 'Пройти квиз заново'}</button>
         </div>
       </div>
     `;
@@ -106,20 +135,21 @@ class Quiz {
   }
 
   _renderStep(q, i) {
+    const isEn = window.LANG === 'en';
     const options = q.options.map(opt => `
       <button class="quiz__option" data-value="${opt.value}" type="button">
         <span class="quiz__option-icon">${opt.icon}</span>
-        <span class="quiz__option-text">${opt.label}</span>
+        <span class="quiz__option-text">${this._q(opt, 'label')}</span>
       </button>
     `).join('');
 
     return `
       <div class="quiz__step" data-index="${i}">
-        <p class="quiz__question">${q.question}</p>
+        <p class="quiz__question">${this._q(q, 'question')}</p>
         <div class="quiz__options">${options}</div>
         <div class="quiz__nav">
-          <button class="quiz__btn-back" type="button">&larr; Назад</button>
-          <button class="btn btn--primary quiz__btn-next" type="button" disabled>Далее &rarr;</button>
+          <button class="quiz__btn-back" type="button">&larr; ${isEn ? 'Back' : 'Назад'}</button>
+          <button class="btn btn--primary quiz__btn-next" type="button" disabled>${isEn ? 'Next' : 'Далее'} &rarr;</button>
         </div>
       </div>
     `;
@@ -169,13 +199,16 @@ class Quiz {
     }
 
     const pct = Math.round((this.step / QUIZ_CONFIG.length) * 100);
+    const isEn = window.LANG === 'en';
     this.container.querySelector('.quiz__progress-fill').style.width = `${pct}%`;
     this.container.querySelector('.quiz__step-label').textContent =
-      `Вопрос ${this.step + 1} из ${QUIZ_CONFIG.length}`;
+      `${isEn ? 'Question' : 'Вопрос'} ${this.step + 1} ${isEn ? 'of' : 'из'} ${QUIZ_CONFIG.length}`;
     this.container.querySelector('.quiz__step-percent').textContent = `${pct}%`;
 
     const nextBtn = steps[this.step]?.querySelector('.quiz__btn-next');
-    if (nextBtn) nextBtn.textContent = this.step === QUIZ_CONFIG.length - 1 ? 'Показать результат' : 'Далее →';
+    if (nextBtn) nextBtn.textContent = this.step === QUIZ_CONFIG.length - 1
+      ? (isEn ? 'Show results' : 'Показать результат')
+      : (isEn ? 'Next →' : 'Далее →');
 
     document.getElementById('quizResult')?.classList.remove('is-active');
     this.container.querySelector('.quiz__steps').style.display = '';
@@ -191,26 +224,31 @@ class Quiz {
     const matched = this._matchWorks();
     const cardsEl = document.getElementById('quizResultCards');
 
+    const isEn = window.LANG === 'en';
     if (matched.length === 0) {
       cardsEl.innerHTML = `<p style="grid-column:1/-1;color:var(--color-text-light)">
-        Подходящих работ пока нет — свяжитесь со мной для индивидуального заказа.
+        ${isEn ? 'No matching works yet — contact me for a custom commission.' : 'Подходящих работ пока нет — свяжитесь со мной для индивидуального заказа.'}
       </p>`;
     } else {
-      cardsEl.innerHTML = matched.slice(0, 6).map(w => `
+      cardsEl.innerHTML = matched.slice(0, 6).map(w => {
+        const cardTitle = isEn ? w.title : (w.title_ru || w.title);
+        const cardSub   = isEn ? w.title_ru : w.title;
+        return `
         <div class="work-card">
           <div class="work-card__img">
             <img src="images/works/${w.image}" alt="${w.title_ru || w.title}" loading="lazy" />
           </div>
           <div class="work-card__body">
-            <p class="work-card__title">${w.title}</p>
-            <p class="work-card__title-ru">${w.title_ru || ''}</p>
+            <p class="work-card__title">${cardTitle}</p>
+            ${cardSub && cardSub !== cardTitle ? `<p class="work-card__title-ru">${cardSub}</p>` : ''}
             <p class="work-card__meta">${w.size} • ${w.year}</p>
             <div class="work-card__footer">
               <span class="work-card__price">${w.price_rub.toLocaleString('ru-RU')} ₽</span>
             </div>
           </div>
         </div>
-      `).join('');
+        `;
+      }).join('');
     }
 
     document.getElementById('quizResult').classList.add('is-active');
