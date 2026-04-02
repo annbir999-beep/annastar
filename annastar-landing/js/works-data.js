@@ -251,7 +251,7 @@ const WORKS_DATA = [
     "materials": "Акрил, смола, сусальное золото, стразы, зеркальные фрагменты, рельефная текстура",
     "description": "Белый тигр — один из четырёх небесных стражей, повелитель запада и хранитель пространства. Его белизна — не отсутствие цвета, а присутствие всех возможностей сразу. Геометрическая структура меха, огранённая кристаллами, превращает живой образ в архитектурный объект — грань между портретом и символом. Золото здесь не украшение, а язык: сила, выраженная тихо. Работа создаётся для пространств, где ценят защиту, выраженную через красоту.",
     "description_en": "White Tiger — guardian of the west and keeper of space. Its whiteness holds all possibilities at once. Geometric faceted structure transforms a living image into an architectural object — where gold speaks quietly of power and protection.",
-    "image": "white-tiger-concept.jpg",
+    "image": "white-tiger.png",
     "formats": [
       {"size": "40×50 cm", "price_rub": 60000},
       {"size": "50×70 cm", "price_rub": 87000},
@@ -271,7 +271,7 @@ const WORKS_DATA = [
     "materials": "Акрил, смола, золото, серебряная гальваника, стразы, зеркальные перья, рельефная текстура",
     "description": "Сова видит в темноте то, что другие не замечают при свете. Это образ внутреннего зрения — способности слышать тишину и читать пространство между словами. Синева ночного фона и холодный блеск серебра создают атмосферу сосредоточенности и покоя. Зеркальные перья отражают свет комнаты — работа меняется вместе с освещением, как меняется наша способность видеть в зависимости от того, насколько мы присутствуем. Для пространств, где думают.",
     "description_en": "The owl sees in darkness what others miss in light. Mirror feathers reflect the room around them — the work shifts with every change of light, like awareness itself. Deep blue and silver for spaces where thinking happens.",
-    "image": "owl-concept.jpg",
+    "image": "owl-concept.png",
     "formats": [
       {"size": "40×50 cm", "price_rub": 60000},
       {"size": "50×70 cm", "price_rub": 87000},
@@ -291,7 +291,7 @@ const WORKS_DATA = [
     "materials": "Акрил, смола, сусальное золото, иридиевые стразы, зеркальная поверхность воды, рельефная текстура",
     "description": "Карп кои плывёт против течения — и именно поэтому он символизирует исполнение желаний. Не то, что даётся само, а то, что завоёвывается движением. Золотая чешуя, переливающаяся иридиевыми кристаллами, создаёт ощущение живого света под водой. Зеркальная поверхность «воды» отражает окружающее пространство — картина включает комнату в себя. Это работа об изобилии, которое начинается изнутри.",
     "description_en": "The koi swims upstream — which is why it symbolises fulfilled wishes. Not what comes easily, but what is earned through movement. Gold scales iridescent with crystal catch the light of the room, making the painting part of its surroundings.",
-    "image": "koi-fish-concept.jpg",
+    "image": "koi-fish.png",
     "formats": [
       {"size": "40×60 cm", "price_rub": 65000},
       {"size": "50×70 cm", "price_rub": 87000},
@@ -299,5 +299,145 @@ const WORKS_DATA = [
       {"size": "70×100 cm", "price_rub": 175000}
     ],
     "tags": ["relax", "concept", "gold", "red", "vertical"]
+  },
+  {
+    "id": "golden-butterfly",
+    "title": "Golden Butterfly",
+    "title_ru": "Золотая бабочка",
+    "series": "Zoology",
+    "concept": true,
+    "available": false,
+    "year": 2026,
+    "materials": "Акрил, смола, сусальное золото, стразы, зеркальные фрагменты, рельефная текстура",
+    "description": "В древнегреческом слово «psyche» означало одновременно «бабочка» и «душа». Это не метафора — это наблюдение: человек, как и бабочка, несёт в себе опыт полного растворения и полного рождения заново. Золотые крылья в этой работе — не украшение. Это броня, отлитая из трансформации. Кристальные грани улавливают свет пространства вокруг, как душа улавливает опыт — и преображает его. Работа для тех, кто прошёл через перемены и вышел из них — светящимся.",
+    "description_en": "In ancient Greek, psyche means both butterfly and soul. Not as metaphor — as observation: the human, like the butterfly, carries the experience of complete dissolution and complete rebirth. Golden wings here are not ornament. They are armour forged through transformation. Crystal facets catch the light of the room, as the soul catches experience and transforms it. For those who have passed through change — and emerged luminous.",
+    "image": "golden-butterfly.png",
+    "formats": [
+      {"size": "40×50 cm", "price_rub": 60000},
+      {"size": "50×70 cm", "price_rub": 87000},
+      {"size": "60×80 cm", "price_rub": 150000},
+      {"size": "70×100 cm", "price_rub": 175000}
+    ],
+    "tags": ["zoology", "animal", "gold", "concept", "transformation"]
+  },
+  {
+    "id": "golden-rose",
+    "title": "Golden Rose",
+    "title_ru": "Золотая роза",
+    "series": "Botanica",
+    "concept": true,
+    "available": false,
+    "year": 2026,
+    "materials": "Акрил, смола, сусальное золото, стразы, лепестковый рельеф, зеркальные элементы",
+    "description": "Роза — это не цветок. Это архетип. В алхимии — процесс внутреннего преображения. В суфийской традиции — первый цветок, выросший там, где пролилась слеза Пророка. В геральдике — тайна и молчание сакрального. Золотая роза — высшая степень этого символа: не красота как данность, а красота как достижение. Каждый лепесток — результат процесса, каждый кристалл — отражение внутреннего пути. Эта работа задаёт вопрос: что в вас уже расцвело — но ещё не замечено?",
+    "description_en": "The rose is not a flower. It is an archetype. In alchemy — a symbol of inner transformation. In Sufi tradition — the first flower where a tear of the Prophet fell. In heraldry — the silence of the sacred. A golden rose is this symbol at its highest: not beauty as given, but beauty as earned. Each petal is the result of a process; each crystal, a reflection of an inner journey. This work asks: what in you has already bloomed — but gone unnoticed?",
+    "image": "golden-rose.png",
+    "formats": [
+      {"size": "40×50 cm", "price_rub": 60000},
+      {"size": "50×70 cm", "price_rub": 87000},
+      {"size": "60×80 cm", "price_rub": 150000},
+      {"size": "70×100 cm", "price_rub": 175000}
+    ],
+    "tags": ["botanica", "floral", "gold", "concept"]
+  },
+  {
+    "id": "mandala-of-light",
+    "title": "Mandala of Light",
+    "title_ru": "Мандала света",
+    "series": "Abstraction",
+    "concept": true,
+    "available": false,
+    "year": 2026,
+    "materials": "Акрил, смола, сусальное золото, стразы, сакральная геометрия, рельефная текстура",
+    "description": "Мандала — это карта и зеркало одновременно. В буддийской традиции её чертят месяцами из цветного песка — и разрушают сразу после завершения. Не потому что итог не важен, а потому что путь к центру — и есть суть. Эта работа сохраняет то, что обычно исчезает: момент полноты. Сакральная геометрия, золото и свет строят пространство концентрации — не для медитации в смысле практики, а для медитации в смысле бытия. Центр всегда здесь. Это напоминание.",
+    "description_en": "A mandala is simultaneously a map and a mirror. In Buddhist tradition it is drawn for months from coloured sand — and destroyed immediately upon completion. Not because the result doesn't matter, but because the journey to the centre is the point. This work preserves what normally disappears: the moment of wholeness. Sacred geometry, gold and light build a space of concentration — not for meditation as practice, but for meditation as being. The centre is always here. This is the reminder.",
+    "image": "mandala-of-light.png",
+    "formats": [
+      {"size": "40×50 cm", "price_rub": 60000},
+      {"size": "50×70 cm", "price_rub": 87000},
+      {"size": "60×80 cm", "price_rub": 150000},
+      {"size": "70×100 cm", "price_rub": 175000}
+    ],
+    "tags": ["abstraction", "sacred", "gold", "concept", "geometry"]
+  },
+  {
+    "id": "white-lioness",
+    "title": "White Lioness",
+    "title_ru": "Белая львица",
+    "series": "Zoology",
+    "concept": true,
+    "available": false,
+    "year": 2026,
+    "materials": "Акрил, смола, белое золото, стразы, зеркальные фрагменты, рельефная текстура",
+    "description": "Львица не охраняет — она воплощает. Её власть не в рыке, а в присутствии. Белый цвет в этой работе — не отсутствие, а совокупность: все цвета, собранные в тишине. Сехмет — египетская богиня с головой львицы — была одновременно разрушительницей и целительницей. Та же сила, направленная по-разному. Кристальная поверхность и рельефная структура создают образ существа, которое не нуждается в доказательствах. Это работа о суверенности — внутренней, непоколебимой, безмолвной.",
+    "description_en": "The lioness does not guard — she embodies. Her power is not in the roar but in the presence. White here is not absence but totality: all colours gathered in stillness. Sekhmet, the Egyptian goddess with a lioness head, was simultaneously destroyer and healer — the same force, differently directed. Crystal surface and sculptural relief create an image of a creature that requires no proof. This work is about sovereignty: internal, unshakeable, silent.",
+    "image": "white-lioness.png",
+    "formats": [
+      {"size": "40×50 cm", "price_rub": 60000},
+      {"size": "50×70 cm", "price_rub": 87000},
+      {"size": "60×80 cm", "price_rub": 150000},
+      {"size": "70×100 cm", "price_rub": 175000}
+    ],
+    "tags": ["zoology", "animal", "white", "gold", "concept"]
+  },
+  {
+    "id": "white-swan",
+    "title": "White Swan",
+    "title_ru": "Белый лебедь",
+    "series": "Zoology",
+    "concept": true,
+    "available": false,
+    "year": 2026,
+    "materials": "Акрил, смола, белое золото, серебряная гальваника, стразы, зеркальные фрагменты, рельефная текстура",
+    "description": "В индуистской традиции лебедь — это Хамса, символ высшего сознания: существо, способное отделить молоко от воды, истину от иллюзии. В нём соединяются два мира — водная поверхность и небо — и это соединение не создаёт противоречия, а рождает грацию. Белое золото и кристальный рельеф этой работы передают то качество, которое трудно назвать словами: когда сила выражает себя через мягкость, а достоинство — через лёгкость. Для пространств, где ценят безупречность без напряжения.",
+    "description_en": "In Hindu tradition, the swan is Hamsa, symbol of highest consciousness: the being capable of separating milk from water, truth from illusion. It unites two worlds — the water's surface and the sky — and that union creates not contradiction but grace. White gold and crystalline relief carry a quality difficult to name: when strength expresses itself through softness, and dignity through lightness. For spaces that value immaculate calm.",
+    "image": "white-swan.png",
+    "formats": [
+      {"size": "40×50 cm", "price_rub": 60000},
+      {"size": "50×70 cm", "price_rub": 87000},
+      {"size": "60×80 cm", "price_rub": 150000},
+      {"size": "70×100 cm", "price_rub": 175000}
+    ],
+    "tags": ["zoology", "animal", "white", "silver", "concept"]
+  },
+  {
+    "id": "lotus-flower",
+    "title": "Lotus Flower",
+    "title_ru": "Цветок лотоса",
+    "series": "Botanica",
+    "concept": true,
+    "available": false,
+    "year": 2026,
+    "materials": "Акрил, смола, сусальное золото, стразы, перламутр, рельефная текстура, зеркальные элементы",
+    "description": "Лотос растёт из ила — и именно это делает его священным. Не несмотря на тьму, а благодаря ей. В индуистской и буддийской традиции он символизирует не чистоту в смысле нетронутости, а чистоту в смысле непривязанности: способность раскрываться каждое утро заново, не удерживая прошлого. Лепестки, прорисованные золотом и кристаллами, несут в себе это движение — вверх, к свету, из глубины. Работа для тех, кто знает: настоящее преображение не происходит на поверхности.",
+    "description_en": "The lotus grows from the mud — and that is precisely what makes it sacred. Not despite the darkness, but because of it. In Hindu and Buddhist tradition it symbolises not purity as untouched, but purity as non-attachment: the capacity to open again each morning, holding nothing of the past. Petals traced in gold and crystal carry this movement — upward, toward light, from the depths. For those who know: true transformation does not happen at the surface.",
+    "image": "lotus-flower.png",
+    "formats": [
+      {"size": "40×50 cm", "price_rub": 60000},
+      {"size": "50×70 cm", "price_rub": 87000},
+      {"size": "60×80 cm", "price_rub": 150000},
+      {"size": "70×100 cm", "price_rub": 175000}
+    ],
+    "tags": ["botanica", "floral", "gold", "pink", "concept"]
+  },
+  {
+    "id": "cherry-blossom-branch",
+    "title": "Cherry Blossom",
+    "title_ru": "Цветущая сакура",
+    "series": "Botanica",
+    "concept": true,
+    "available": false,
+    "year": 2026,
+    "materials": "Акрил, смола, белое золото, стразы, розовый пигмент, рельефная текстура, зеркальные элементы",
+    "description": "Сакура цветёт семь дней. Японцы специально собираются под деревьями — не чтобы остановить цветение, а чтобы присутствовать при нём. Моно-но аварэ — «печаль вещей» — это японское понятие красоты, неотделимой от её конечности. Рельефные лепестки в этой работе сохраняют то, что природа отпускает: момент наивысшего раскрытия. Золото и кристаллы превращают мимолётное в вечное — не отрицая его природу, а делая её видимой. Это работа о присутствии. О том, чтобы увидеть — пока цветёт.",
+    "description_en": "Cherry blossom lasts seven days. The Japanese gather beneath the trees not to stop the blooming, but to be present for it. Mono no aware — the pathos of things — is the Japanese sense of beauty inseparable from its transience. The relief petals in this work preserve what nature releases: the moment of fullest opening. Gold and crystal render the fleeting permanent — not by denying its nature, but by making it visible. This is a work about presence. About seeing — while it blooms.",
+    "image": "cherry-blossom-branch.png",
+    "formats": [
+      {"size": "40×50 cm", "price_rub": 60000},
+      {"size": "50×70 cm", "price_rub": 87000},
+      {"size": "60×80 cm", "price_rub": 150000},
+      {"size": "70×100 cm", "price_rub": 175000}
+    ],
+    "tags": ["botanica", "floral", "pink", "white", "concept"]
   }
 ];
