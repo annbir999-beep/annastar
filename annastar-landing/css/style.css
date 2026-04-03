@@ -118,6 +118,7 @@ ul { list-style: none; }
   display: flex;
   align-items: center;
   overflow: hidden;
+  background: #1a1612;
 }
 
 .hero__video-bg {
