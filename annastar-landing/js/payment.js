@@ -60,7 +60,7 @@ const Payment = (() => {
   /** Получить данные работы из works.json */
   async function _getWork(workId) {
     try {
-      const res   = await fetch('data/works.json');
+      const res   = await fetch('/data/works.json');
       const works = await res.json();
       return works.find(w => w.id === workId) || null;
     } catch {

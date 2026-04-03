@@ -39,7 +39,7 @@ class TryOn {
 
   async _loadWorks() {
     try {
-      const res = await fetch('data/works.json');
+      const res = await fetch('/data/works.json');
       if (!res.ok) throw new Error();
       this.works = await res.json();
     } catch {

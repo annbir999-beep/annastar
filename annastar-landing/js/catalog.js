@@ -38,7 +38,7 @@ class Catalog {
 
   async _loadWorks() {
     try {
-      const res = await fetch('data/works.json');
+      const res = await fetch('/data/works.json');
       if (!res.ok) throw new Error(res.status);
       this.works = await res.json();
     } catch (err) {

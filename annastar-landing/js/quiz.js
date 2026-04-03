@@ -95,7 +95,7 @@ class Quiz {
 
   async _loadWorks() {
     try {
-      const res = await fetch('data/works.json');
+      const res = await fetch('/data/works.json');
       this.works = await res.json();
     } catch {
       this.works = typeof WORKS_DATA !== 'undefined' ? WORKS_DATA : [];
