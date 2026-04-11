@@ -75,9 +75,10 @@ class Catalog {
     });
   }
 
-  _imageHTML(image, alt, attrs = '', eager = false) {
-    const loading = eager ? 'eager' : 'lazy';
-    return `<img src="/images/works/${image}" alt="${alt}" loading="${loading}" decoding="async" ${attrs}/>`;
+  _imageHTML(image, alt, attrs = '', _unused = false) {
+    // CSS columns masonry требует eager: без известной высоты lazy-картина
+    // получает позицию 0 и никогда не попадает в viewport → не загружается
+    return `<img src="/images/works/${image}" alt="${alt}" loading="eager" decoding="async" ${attrs}/>`;
   }
 
   _cardHTML(w, idx = 99) {
