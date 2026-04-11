@@ -236,7 +236,7 @@ class Quiz {
         return `
         <div class="work-card">
           <div class="work-card__img">
-            <img src="images/works/${w.image}" alt="${w.title_ru || w.title}" loading="lazy" />
+            <img src="/images/works/${w.image}" alt="${w.title_ru || w.title}" loading="eager" decoding="async" />
           </div>
           <div class="work-card__body">
             <p class="work-card__title">${cardTitle}</p>

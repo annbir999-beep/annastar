@@ -69,7 +69,7 @@ class TryOn {
             ${this.works.map(w => `
               <button class="tryon__thumb${this.selectedWork?.id === w.id ? ' is-active' : ''}"
                 data-id="${w.id}" type="button" title="${w.title_ru || w.title}">
-                <img src="images/works/${w.image}" alt="${w.title}" loading="lazy" />
+                <img src="/images/works/${w.image}" alt="${w.title}" loading="eager" decoding="async" />
               </button>
             `).join('')}
           </div>
@@ -195,7 +195,7 @@ class TryOn {
       this.paintingImg = img;
       this._renderEditor();
     };
-    img.src = `images/works/${this.selectedWork.image}`;
+    img.src = `/images/works/${this.selectedWork.image}`;
   }
 
   _renderEditor() {
@@ -223,7 +223,7 @@ class TryOn {
 
         <div class="tryon__sidebar">
           <div class="tryon__sel-card">
-            <img src="images/works/${w.image}" alt="${w.title}" class="tryon__sel-img" />
+            <img src="/images/works/${w.image}" alt="${w.title}" class="tryon__sel-img" />
             <div class="tryon__sel-info">
               <p class="tryon__sel-title">${title}</p>
               <p class="tryon__sel-size">${w.size}</p>

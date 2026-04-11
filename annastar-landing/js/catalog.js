@@ -61,7 +61,7 @@ class Catalog {
       return;
     }
 
-    this.grid.innerHTML = works.map(w => this._cardHTML(w)).join('');
+    this.grid.innerHTML = works.map((w, i) => this._cardHTML(w, i)).join('');
 
     // Анимация появления
     this.grid.querySelectorAll('.work-card').forEach((card, i) => {
@@ -75,11 +75,12 @@ class Catalog {
     });
   }
 
-  _imageHTML(image, alt, attrs = '') {
-    return `<img src="images/works/${image}" alt="${alt}" loading="lazy" ${attrs}/>`;
+  _imageHTML(image, alt, attrs = '', eager = false) {
+    const loading = eager ? 'eager' : 'lazy';
+    return `<img src="/images/works/${image}" alt="${alt}" loading="${loading}" decoding="async" ${attrs}/>`;
   }
 
-  _cardHTML(w) {
+  _cardHTML(w, idx = 99) {
     const isConcept  = w.concept === true;
     const isFeatured = w.tags?.includes('hero');
     const isNew      = w.year >= 2026 && !isFeatured && !isConcept;
@@ -114,7 +115,7 @@ class Catalog {
                 aria-label="${this._t('В избранное', 'Wishlist')}"
                 title="${this._t('В избранное', 'Add to wishlist')}">♡</button>
         <div class="work-card__img">
-          ${this._imageHTML(w.image, w.title)}
+          ${this._imageHTML(w.image, w.title, '', idx < 8)}
         </div>
         <div class="work-card__body">
           <h3 class="work-card__title">${cardTitle}</h3>
@@ -212,14 +213,14 @@ class Catalog {
     const imageSection = allImages.length > 1 ? `
       <div class="modal__gallery">
         <div class="modal__gallery-main">
-          <img id="mgImg" src="images/works/${allImages[0]}" alt="${work.title}" loading="lazy"/>
+          <img id="mgImg" src="/images/works/${allImages[0]}" alt="${work.title}" loading="eager" decoding="async"/>
           <button class="modal__gallery-nav modal__gallery-prev" id="mgPrev" aria-label="${this._t('Назад', 'Previous')}">&#8249;</button>
           <button class="modal__gallery-nav modal__gallery-next" id="mgNext" aria-label="${this._t('Вперёд', 'Next')}">&#8250;</button>
         </div>
         <div class="modal__gallery-thumbs">
-          ${allImages.map((img, i) => `<img src="images/works/${img}" class="modal__thumb${i===0?' is-active':''}" data-idx="${i}" loading="lazy" alt=""/>`).join('')}
+          ${allImages.map((img, i) => `<img src="/images/works/${img}" class="modal__thumb${i===0?' is-active':''}" data-idx="${i}" loading="eager" decoding="async" alt=""/>`).join('')}
         </div>
-      </div>` : this._imageHTML(work.image, work.title, 'class="modal__single-img"');
+      </div>` : this._imageHTML(work.image, work.title, 'class="modal__single-img"', true);
 
     // ─── Content: concept vs regular ─────────────────────────────────────────
     let contentSection;
@@ -296,7 +297,7 @@ class Catalog {
 
       const setIdx = (idx) => {
         currentIdx = (idx + allImages.length) % allImages.length;
-        img.src = `images/works/${allImages[currentIdx]}`;
+        img.src = `/images/works/${allImages[currentIdx]}`;
         thumbs.forEach((t, i) => t.classList.toggle('is-active', i === currentIdx));
       };
 
