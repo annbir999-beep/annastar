@@ -75,10 +75,11 @@ class Catalog {
     });
   }
 
-  _imageHTML(image, alt, attrs = '', _unused = false) {
-    // CSS columns masonry требует eager: без известной высоты lazy-картина
-    // получает позицию 0 и никогда не попадает в viewport → не загружается
-    return `<img src="/images/works/${image}" alt="${alt}" loading="eager" decoding="async" ${attrs}/>`;
+  _imageHTML(image, alt, w = 0, h = 0, attrs = '') {
+    // width/height обязательны для CSS grid: браузер резервирует место
+    // до загрузки изображения, иначе Яндекс не показывает картины
+    const dims = w && h ? `width="${w}" height="${h}"` : '';
+    return `<img src="/images/works/${image}" alt="${alt}" loading="eager" decoding="async" ${dims} ${attrs}/>`;
   }
 
   _cardHTML(w, idx = 99) {
@@ -116,7 +117,7 @@ class Catalog {
                 aria-label="${this._t('В избранное', 'Wishlist')}"
                 title="${this._t('В избранное', 'Add to wishlist')}">♡</button>
         <div class="work-card__img">
-          ${this._imageHTML(w.image, w.title, '', idx < 8)}
+          ${this._imageHTML(w.image, w.title, w.img_w, w.img_h)}
         </div>
         <div class="work-card__body">
           <h3 class="work-card__title">${cardTitle}</h3>
@@ -221,7 +222,7 @@ class Catalog {
         <div class="modal__gallery-thumbs">
           ${allImages.map((img, i) => `<img src="/images/works/${img}" class="modal__thumb${i===0?' is-active':''}" data-idx="${i}" loading="eager" decoding="async" alt=""/>`).join('')}
         </div>
-      </div>` : this._imageHTML(work.image, work.title, 'class="modal__single-img"', true);
+      </div>` : this._imageHTML(work.image, work.title, work.img_w, work.img_h, 'class="modal__single-img"');
 
     // ─── Content: concept vs regular ─────────────────────────────────────────
     let contentSection;

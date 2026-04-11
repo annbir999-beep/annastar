@@ -423,17 +423,18 @@ ul { list-style: none; }
   color: var(--color-white);
 }
 
-/* Masonry-колонки */
+/* CSS Grid — надёжнее columns во всех браузерах */
 .catalog__grid {
-  columns: 3;
-  column-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: start;    /* карточки разной высоты не растягиваются */
 }
 
 /* CARD */
 .work-card {
-  break-inside: avoid;
   display: block;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   border-radius: 6px;
   overflow: hidden;
   cursor: pointer;

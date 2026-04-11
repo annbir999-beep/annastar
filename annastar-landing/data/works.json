@@ -22,7 +22,9 @@
       "floral",
       "purple",
       "small"
-    ]
+    ],
+    "img_w": 1155,
+    "img_h": 1544
   },
   {
     "id": "tree-of-wonders",
@@ -47,7 +49,9 @@
       "gold",
       "round",
       "medium"
-    ]
+    ],
+    "img_w": 704,
+    "img_h": 728
   },
   {
     "id": "crystal-bloom",
@@ -72,7 +76,9 @@
       "floral",
       "pink",
       "medium"
-    ]
+    ],
+    "img_w": 1400,
+    "img_h": 1007
   },
   {
     "id": "inner-light",
@@ -98,7 +104,9 @@
       "gold",
       "round",
       "small"
-    ]
+    ],
+    "img_w": 1400,
+    "img_h": 1387
   },
   {
     "id": "solar-lion",
@@ -124,7 +132,9 @@
       "fire",
       "gold",
       "medium"
-    ]
+    ],
+    "img_w": 1400,
+    "img_h": 1964
   },
   {
     "id": "cosmic-wolf",
@@ -150,7 +160,9 @@
       "night",
       "silver",
       "medium"
-    ]
+    ],
+    "img_w": 1400,
+    "img_h": 2017
   },
   {
     "id": "olive-branch",
@@ -175,7 +187,9 @@
       "nature",
       "green",
       "large"
-    ]
+    ],
+    "img_w": 1400,
+    "img_h": 1950
   },
   {
     "id": "wings-of-light",
@@ -201,7 +215,9 @@
       "gold",
       "silver",
       "large"
-    ]
+    ],
+    "img_w": 1277,
+    "img_h": 1827
   },
   {
     "id": "golden-leopard",
@@ -227,7 +243,9 @@
       "gold",
       "nature",
       "medium"
-    ]
+    ],
+    "img_w": 1400,
+    "img_h": 1007
   },
   {
     "id": "golden-eagle",
@@ -253,7 +271,9 @@
       "gold",
       "freedom",
       "medium"
-    ]
+    ],
+    "img_w": 1400,
+    "img_h": 1968
   },
   {
     "id": "body-of-light",
@@ -279,7 +299,9 @@
       "white",
       "silver",
       "medium"
-    ]
+    ],
+    "img_w": 1400,
+    "img_h": 1026
   },
   {
     "id": "golden-peacock",
@@ -305,7 +327,9 @@
       "gold",
       "hero",
       "large"
-    ]
+    ],
+    "img_w": 1306,
+    "img_h": 1733
   },
   {
     "id": "white-tiger",
@@ -343,7 +367,9 @@
       "white",
       "gold",
       "concept"
-    ]
+    ],
+    "img_w": 1400,
+    "img_h": 2508
   },
   {
     "id": "night-owl",
@@ -381,7 +407,9 @@
       "blue",
       "silver",
       "concept"
-    ]
+    ],
+    "img_w": 1400,
+    "img_h": 2508
   },
   {
     "id": "koi-fish",
@@ -419,7 +447,9 @@
       "gold",
       "red",
       "vertical"
-    ]
+    ],
+    "img_w": 1400,
+    "img_h": 2515
   },
   {
     "id": "golden-butterfly",
@@ -457,7 +487,9 @@
       "gold",
       "concept",
       "transformation"
-    ]
+    ],
+    "img_w": 1377,
+    "img_h": 2015
   },
   {
     "id": "golden-rose",
@@ -494,7 +526,9 @@
       "floral",
       "gold",
       "concept"
-    ]
+    ],
+    "img_w": 1304,
+    "img_h": 1896
   },
   {
     "id": "mandala-of-light",
@@ -532,7 +566,9 @@
       "gold",
       "concept",
       "geometry"
-    ]
+    ],
+    "img_w": 1400,
+    "img_h": 2508
   },
   {
     "id": "white-lioness",
@@ -570,7 +606,9 @@
       "white",
       "gold",
       "concept"
-    ]
+    ],
+    "img_w": 1328,
+    "img_h": 1917
   },
   {
     "id": "white-swan",
@@ -608,7 +646,9 @@
       "white",
       "silver",
       "concept"
-    ]
+    ],
+    "img_w": 1400,
+    "img_h": 2012
   },
   {
     "id": "lotus-flower",
@@ -646,7 +686,9 @@
       "gold",
       "pink",
       "concept"
-    ]
+    ],
+    "img_w": 998,
+    "img_h": 1445
   },
   {
     "id": "cherry-blossom-branch",
@@ -684,6 +726,8 @@
       "pink",
       "white",
       "concept"
-    ]
+    ],
+    "img_w": 1332,
+    "img_h": 1931
   }
 ]

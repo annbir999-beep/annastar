@@ -18,7 +18,14 @@ const WORKS_DATA = [
     "mockup": "royal-iris-interior.jpg",
     "payment_link": "https://yookassa.ru/my/i/acY60NeAkcei/l",
     "available": true,
-    "tags": ["botanica", "floral", "purple", "small"]
+    "tags": [
+      "botanica",
+      "floral",
+      "purple",
+      "small"
+    ],
+    "img_w": 1155,
+    "img_h": 1544
   },
   {
     "id": "tree-of-wonders",
@@ -38,7 +45,14 @@ const WORKS_DATA = [
     "mockup": "tree-of-wonders-interior.jpg",
     "payment_link": "https://yookassa.ru/my/i/acY7RMUnqGKz/l",
     "available": true,
-    "tags": ["botanica", "gold", "round", "medium"]
+    "tags": [
+      "botanica",
+      "gold",
+      "round",
+      "medium"
+    ],
+    "img_w": 704,
+    "img_h": 728
   },
   {
     "id": "crystal-bloom",
@@ -58,7 +72,14 @@ const WORKS_DATA = [
     "mockup": "crystal-bloom-interior.jpg",
     "payment_link": "https://yookassa.ru/my/i/acY9Dg3Yhz_N/l",
     "available": true,
-    "tags": ["botanica", "floral", "pink", "medium"]
+    "tags": [
+      "botanica",
+      "floral",
+      "pink",
+      "medium"
+    ],
+    "img_w": 1400,
+    "img_h": 1007
   },
   {
     "id": "inner-light",
@@ -78,7 +99,15 @@ const WORKS_DATA = [
     "mockup": "inner-light-interior.jpg",
     "payment_link": "https://yookassa.ru/my/i/acY842J1qGS5/l",
     "available": true,
-    "tags": ["relax", "meditation", "gold", "round", "small"]
+    "tags": [
+      "relax",
+      "meditation",
+      "gold",
+      "round",
+      "small"
+    ],
+    "img_w": 1400,
+    "img_h": 1387
   },
   {
     "id": "solar-lion",
@@ -98,7 +127,15 @@ const WORKS_DATA = [
     "mockup": "solar-lion-interior.jpg",
     "payment_link": "https://yookassa.ru/my/i/acY8uU7Gkx31/l",
     "available": true,
-    "tags": ["zoology", "animal", "fire", "gold", "medium"]
+    "tags": [
+      "zoology",
+      "animal",
+      "fire",
+      "gold",
+      "medium"
+    ],
+    "img_w": 1400,
+    "img_h": 1964
   },
   {
     "id": "cosmic-wolf",
@@ -118,7 +155,15 @@ const WORKS_DATA = [
     "mockup": "cosmic-wolf-interior.jpg",
     "payment_link": "https://yookassa.ru/my/i/acY8keLxoyoa/l",
     "available": true,
-    "tags": ["zoology", "animal", "night", "silver", "medium"]
+    "tags": [
+      "zoology",
+      "animal",
+      "night",
+      "silver",
+      "medium"
+    ],
+    "img_w": 1400,
+    "img_h": 2017
   },
   {
     "id": "olive-branch",
@@ -126,7 +171,7 @@ const WORKS_DATA = [
     "title_ru": "Оливковая ветвь",
     "series": "Botanica",
     "size": "70×100 cm",
-    "sqm": 0.70,
+    "sqm": 0.7,
     "price_rub": 175000,
     "price_eur": 1880,
     "print_price": 1500,
@@ -138,7 +183,14 @@ const WORKS_DATA = [
     "mockup": "olive-branch-interior.jpg",
     "payment_link": "https://yookassa.ru/my/i/acY8bsnNmTVE/l",
     "available": true,
-    "tags": ["botanica", "nature", "green", "large"]
+    "tags": [
+      "botanica",
+      "nature",
+      "green",
+      "large"
+    ],
+    "img_w": 1400,
+    "img_h": 1950
   },
   {
     "id": "wings-of-light",
@@ -146,7 +198,7 @@ const WORKS_DATA = [
     "title_ru": "Крылья света",
     "series": "Zoology",
     "size": "70×100 cm",
-    "sqm": 0.70,
+    "sqm": 0.7,
     "price_rub": 175000,
     "price_eur": 1880,
     "print_price": 1500,
@@ -158,7 +210,15 @@ const WORKS_DATA = [
     "mockup": "wings-of-light-interior.jpg",
     "payment_link": "https://yookassa.ru/my/i/acY8NpLnW5tv/l",
     "available": true,
-    "tags": ["zoology", "feathers", "gold", "silver", "large"]
+    "tags": [
+      "zoology",
+      "feathers",
+      "gold",
+      "silver",
+      "large"
+    ],
+    "img_w": 1277,
+    "img_h": 1827
   },
   {
     "id": "golden-leopard",
@@ -178,7 +238,15 @@ const WORKS_DATA = [
     "mockup": "golden-leopard-interior.jpg",
     "payment_link": "https://yookassa.ru/my/i/acY8Bhi9B68T/l",
     "available": true,
-    "tags": ["zoology", "animal", "gold", "nature", "medium"]
+    "tags": [
+      "zoology",
+      "animal",
+      "gold",
+      "nature",
+      "medium"
+    ],
+    "img_w": 1400,
+    "img_h": 1007
   },
   {
     "id": "golden-eagle",
@@ -198,7 +266,15 @@ const WORKS_DATA = [
     "mockup": "golden-eagle-interior.jpg",
     "payment_link": "https://yookassa.ru/my/i/acY7yfq_TsGS/l",
     "available": true,
-    "tags": ["zoology", "animal", "gold", "freedom", "medium"]
+    "tags": [
+      "zoology",
+      "animal",
+      "gold",
+      "freedom",
+      "medium"
+    ],
+    "img_w": 1400,
+    "img_h": 1968
   },
   {
     "id": "body-of-light",
@@ -218,7 +294,15 @@ const WORKS_DATA = [
     "mockup": "body-of-light-interior.jpg",
     "payment_link": "https://yookassa.ru/my/i/acY7bKUM3hnb/l",
     "available": true,
-    "tags": ["abstraction", "architecture", "white", "silver", "medium"]
+    "tags": [
+      "abstraction",
+      "architecture",
+      "white",
+      "silver",
+      "medium"
+    ],
+    "img_w": 1400,
+    "img_h": 1026
   },
   {
     "id": "golden-peacock",
@@ -238,7 +322,15 @@ const WORKS_DATA = [
     "mockup": "golden-peacock-interior.jpg",
     "payment_link": "https://yookassa.ru/my/i/acWmeN3116-8/l",
     "available": true,
-    "tags": ["zoology", "animal", "gold", "hero", "large"]
+    "tags": [
+      "zoology",
+      "animal",
+      "gold",
+      "hero",
+      "large"
+    ],
+    "img_w": 1306,
+    "img_h": 1733
   },
   {
     "id": "white-tiger",
@@ -253,12 +345,32 @@ const WORKS_DATA = [
     "description_en": "White Tiger — guardian of the west and keeper of space. Its whiteness holds all possibilities at once. Geometric faceted structure transforms a living image into an architectural object — where gold speaks quietly of power and protection.",
     "image": "white-tiger.webp",
     "formats": [
-      {"size": "40×50 cm", "price_rub": 60000},
-      {"size": "50×70 cm", "price_rub": 87000},
-      {"size": "60×80 cm", "price_rub": 150000},
-      {"size": "70×100 cm", "price_rub": 175000}
+      {
+        "size": "40×50 cm",
+        "price_rub": 60000
+      },
+      {
+        "size": "50×70 cm",
+        "price_rub": 87000
+      },
+      {
+        "size": "60×80 cm",
+        "price_rub": 150000
+      },
+      {
+        "size": "70×100 cm",
+        "price_rub": 175000
+      }
     ],
-    "tags": ["zoology", "animal", "white", "gold", "concept"]
+    "tags": [
+      "zoology",
+      "animal",
+      "white",
+      "gold",
+      "concept"
+    ],
+    "img_w": 1400,
+    "img_h": 2508
   },
   {
     "id": "night-owl",
@@ -273,12 +385,32 @@ const WORKS_DATA = [
     "description_en": "The owl sees in darkness what others miss in light. Mirror feathers reflect the room around them — the work shifts with every change of light, like awareness itself. Deep blue and silver for spaces where thinking happens.",
     "image": "owl-concept.webp",
     "formats": [
-      {"size": "40×50 cm", "price_rub": 60000},
-      {"size": "50×70 cm", "price_rub": 87000},
-      {"size": "60×80 cm", "price_rub": 150000},
-      {"size": "70×100 cm", "price_rub": 175000}
+      {
+        "size": "40×50 cm",
+        "price_rub": 60000
+      },
+      {
+        "size": "50×70 cm",
+        "price_rub": 87000
+      },
+      {
+        "size": "60×80 cm",
+        "price_rub": 150000
+      },
+      {
+        "size": "70×100 cm",
+        "price_rub": 175000
+      }
     ],
-    "tags": ["zoology", "animal", "blue", "silver", "concept"]
+    "tags": [
+      "zoology",
+      "animal",
+      "blue",
+      "silver",
+      "concept"
+    ],
+    "img_w": 1400,
+    "img_h": 2508
   },
   {
     "id": "koi-fish",
@@ -293,12 +425,32 @@ const WORKS_DATA = [
     "description_en": "The koi swims upstream — which is why it symbolises fulfilled wishes. Not what comes easily, but what is earned through movement. Gold scales iridescent with crystal catch the light of the room, making the painting part of its surroundings.",
     "image": "koi-fish.webp",
     "formats": [
-      {"size": "40×60 cm", "price_rub": 65000},
-      {"size": "50×70 cm", "price_rub": 87000},
-      {"size": "60×90 cm", "price_rub": 155000},
-      {"size": "70×100 cm", "price_rub": 175000}
+      {
+        "size": "40×60 cm",
+        "price_rub": 65000
+      },
+      {
+        "size": "50×70 cm",
+        "price_rub": 87000
+      },
+      {
+        "size": "60×90 cm",
+        "price_rub": 155000
+      },
+      {
+        "size": "70×100 cm",
+        "price_rub": 175000
+      }
     ],
-    "tags": ["relax", "concept", "gold", "red", "vertical"]
+    "tags": [
+      "relax",
+      "concept",
+      "gold",
+      "red",
+      "vertical"
+    ],
+    "img_w": 1400,
+    "img_h": 2515
   },
   {
     "id": "golden-butterfly",
@@ -313,12 +465,32 @@ const WORKS_DATA = [
     "description_en": "In ancient Greek, psyche means both butterfly and soul. Not as metaphor — as observation: the human, like the butterfly, carries the experience of complete dissolution and complete rebirth. Golden wings here are not ornament. They are armour forged through transformation. Crystal facets catch the light of the room, as the soul catches experience and transforms it. For those who have passed through change — and emerged luminous.",
     "image": "golden-butterfly.webp",
     "formats": [
-      {"size": "40×50 cm", "price_rub": 60000},
-      {"size": "50×70 cm", "price_rub": 87000},
-      {"size": "60×80 cm", "price_rub": 150000},
-      {"size": "70×100 cm", "price_rub": 175000}
+      {
+        "size": "40×50 cm",
+        "price_rub": 60000
+      },
+      {
+        "size": "50×70 cm",
+        "price_rub": 87000
+      },
+      {
+        "size": "60×80 cm",
+        "price_rub": 150000
+      },
+      {
+        "size": "70×100 cm",
+        "price_rub": 175000
+      }
     ],
-    "tags": ["zoology", "animal", "gold", "concept", "transformation"]
+    "tags": [
+      "zoology",
+      "animal",
+      "gold",
+      "concept",
+      "transformation"
+    ],
+    "img_w": 1377,
+    "img_h": 2015
   },
   {
     "id": "golden-rose",
@@ -333,12 +505,31 @@ const WORKS_DATA = [
     "description_en": "The rose is not a flower. It is an archetype. In alchemy — a symbol of inner transformation. In Sufi tradition — the first flower where a tear of the Prophet fell. In heraldry — the silence of the sacred. A golden rose is this symbol at its highest: not beauty as given, but beauty as earned. Each petal is the result of a process; each crystal, a reflection of an inner journey. This work asks: what in you has already bloomed — but gone unnoticed?",
     "image": "golden-rose.webp",
     "formats": [
-      {"size": "40×50 cm", "price_rub": 60000},
-      {"size": "50×70 cm", "price_rub": 87000},
-      {"size": "60×80 cm", "price_rub": 150000},
-      {"size": "70×100 cm", "price_rub": 175000}
+      {
+        "size": "40×50 cm",
+        "price_rub": 60000
+      },
+      {
+        "size": "50×70 cm",
+        "price_rub": 87000
+      },
+      {
+        "size": "60×80 cm",
+        "price_rub": 150000
+      },
+      {
+        "size": "70×100 cm",
+        "price_rub": 175000
+      }
     ],
-    "tags": ["botanica", "floral", "gold", "concept"]
+    "tags": [
+      "botanica",
+      "floral",
+      "gold",
+      "concept"
+    ],
+    "img_w": 1304,
+    "img_h": 1896
   },
   {
     "id": "mandala-of-light",
@@ -353,12 +544,32 @@ const WORKS_DATA = [
     "description_en": "A mandala is simultaneously a map and a mirror. In Buddhist tradition it is drawn for months from coloured sand — and destroyed immediately upon completion. Not because the result doesn't matter, but because the journey to the centre is the point. This work preserves what normally disappears: the moment of wholeness. Sacred geometry, gold and light build a space of concentration — not for meditation as practice, but for meditation as being. The centre is always here. This is the reminder.",
     "image": "mandala-of-light.webp",
     "formats": [
-      {"size": "40×50 cm", "price_rub": 60000},
-      {"size": "50×70 cm", "price_rub": 87000},
-      {"size": "60×80 cm", "price_rub": 150000},
-      {"size": "70×100 cm", "price_rub": 175000}
+      {
+        "size": "40×50 cm",
+        "price_rub": 60000
+      },
+      {
+        "size": "50×70 cm",
+        "price_rub": 87000
+      },
+      {
+        "size": "60×80 cm",
+        "price_rub": 150000
+      },
+      {
+        "size": "70×100 cm",
+        "price_rub": 175000
+      }
     ],
-    "tags": ["abstraction", "sacred", "gold", "concept", "geometry"]
+    "tags": [
+      "abstraction",
+      "sacred",
+      "gold",
+      "concept",
+      "geometry"
+    ],
+    "img_w": 1400,
+    "img_h": 2508
   },
   {
     "id": "white-lioness",
@@ -373,12 +584,32 @@ const WORKS_DATA = [
     "description_en": "The lioness does not guard — she embodies. Her power is not in the roar but in the presence. White here is not absence but totality: all colours gathered in stillness. Sekhmet, the Egyptian goddess with a lioness head, was simultaneously destroyer and healer — the same force, differently directed. Crystal surface and sculptural relief create an image of a creature that requires no proof. This work is about sovereignty: internal, unshakeable, silent.",
     "image": "white-lioness.webp",
     "formats": [
-      {"size": "40×50 cm", "price_rub": 60000},
-      {"size": "50×70 cm", "price_rub": 87000},
-      {"size": "60×80 cm", "price_rub": 150000},
-      {"size": "70×100 cm", "price_rub": 175000}
+      {
+        "size": "40×50 cm",
+        "price_rub": 60000
+      },
+      {
+        "size": "50×70 cm",
+        "price_rub": 87000
+      },
+      {
+        "size": "60×80 cm",
+        "price_rub": 150000
+      },
+      {
+        "size": "70×100 cm",
+        "price_rub": 175000
+      }
     ],
-    "tags": ["zoology", "animal", "white", "gold", "concept"]
+    "tags": [
+      "zoology",
+      "animal",
+      "white",
+      "gold",
+      "concept"
+    ],
+    "img_w": 1328,
+    "img_h": 1917
   },
   {
     "id": "white-swan",
@@ -393,12 +624,32 @@ const WORKS_DATA = [
     "description_en": "In Hindu tradition, the swan is Hamsa, symbol of highest consciousness: the being capable of separating milk from water, truth from illusion. It unites two worlds — the water's surface and the sky — and that union creates not contradiction but grace. White gold and crystalline relief carry a quality difficult to name: when strength expresses itself through softness, and dignity through lightness. For spaces that value immaculate calm.",
     "image": "white-swan.webp",
     "formats": [
-      {"size": "40×50 cm", "price_rub": 60000},
-      {"size": "50×70 cm", "price_rub": 87000},
-      {"size": "60×80 cm", "price_rub": 150000},
-      {"size": "70×100 cm", "price_rub": 175000}
+      {
+        "size": "40×50 cm",
+        "price_rub": 60000
+      },
+      {
+        "size": "50×70 cm",
+        "price_rub": 87000
+      },
+      {
+        "size": "60×80 cm",
+        "price_rub": 150000
+      },
+      {
+        "size": "70×100 cm",
+        "price_rub": 175000
+      }
     ],
-    "tags": ["zoology", "animal", "white", "silver", "concept"]
+    "tags": [
+      "zoology",
+      "animal",
+      "white",
+      "silver",
+      "concept"
+    ],
+    "img_w": 1400,
+    "img_h": 2012
   },
   {
     "id": "lotus-flower",
@@ -413,12 +664,32 @@ const WORKS_DATA = [
     "description_en": "The lotus grows from the mud — and that is precisely what makes it sacred. Not despite the darkness, but because of it. In Hindu and Buddhist tradition it symbolises not purity as untouched, but purity as non-attachment: the capacity to open again each morning, holding nothing of the past. Petals traced in gold and crystal carry this movement — upward, toward light, from the depths. For those who know: true transformation does not happen at the surface.",
     "image": "lotus-flower.webp",
     "formats": [
-      {"size": "40×50 cm", "price_rub": 60000},
-      {"size": "50×70 cm", "price_rub": 87000},
-      {"size": "60×80 cm", "price_rub": 150000},
-      {"size": "70×100 cm", "price_rub": 175000}
+      {
+        "size": "40×50 cm",
+        "price_rub": 60000
+      },
+      {
+        "size": "50×70 cm",
+        "price_rub": 87000
+      },
+      {
+        "size": "60×80 cm",
+        "price_rub": 150000
+      },
+      {
+        "size": "70×100 cm",
+        "price_rub": 175000
+      }
     ],
-    "tags": ["botanica", "floral", "gold", "pink", "concept"]
+    "tags": [
+      "botanica",
+      "floral",
+      "gold",
+      "pink",
+      "concept"
+    ],
+    "img_w": 998,
+    "img_h": 1445
   },
   {
     "id": "cherry-blossom-branch",
@@ -433,11 +704,31 @@ const WORKS_DATA = [
     "description_en": "Cherry blossom lasts seven days. The Japanese gather beneath the trees not to stop the blooming, but to be present for it. Mono no aware — the pathos of things — is the Japanese sense of beauty inseparable from its transience. The relief petals in this work preserve what nature releases: the moment of fullest opening. Gold and crystal render the fleeting permanent — not by denying its nature, but by making it visible. This is a work about presence. About seeing — while it blooms.",
     "image": "cherry-blossom-branch.webp",
     "formats": [
-      {"size": "40×50 cm", "price_rub": 60000},
-      {"size": "50×70 cm", "price_rub": 87000},
-      {"size": "60×80 cm", "price_rub": 150000},
-      {"size": "70×100 cm", "price_rub": 175000}
+      {
+        "size": "40×50 cm",
+        "price_rub": 60000
+      },
+      {
+        "size": "50×70 cm",
+        "price_rub": 87000
+      },
+      {
+        "size": "60×80 cm",
+        "price_rub": 150000
+      },
+      {
+        "size": "70×100 cm",
+        "price_rub": 175000
+      }
     ],
-    "tags": ["botanica", "floral", "pink", "white", "concept"]
+    "tags": [
+      "botanica",
+      "floral",
+      "pink",
+      "white",
+      "concept"
+    ],
+    "img_w": 1332,
+    "img_h": 1931
   }
 ];
