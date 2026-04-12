@@ -263,11 +263,12 @@ function applyI18n() {
   langBtn.textContent = currentLang === 'ru' ? 'EN' : 'RU';
   // Фильтры
   const filterLabels = {
-    all:      currentLang === 'ru' ? 'Все'        : 'All',
-    botanica: 'Botanica',
-    space:    'Space',
-    soul:     'Soul',
-    concept:  currentLang === 'ru' ? 'Под заказ'  : 'Commission',
+    all:         currentLang === 'ru' ? 'Все'       : 'All',
+    botanica:    'Botanica',
+    zoology:     'Zoology',
+    abstraction: 'Abstraction',
+    relax:       'Relax',
+    concept:     currentLang === 'ru' ? 'Под заказ' : 'Commission',
   };
   filters.querySelectorAll('.tma-filter').forEach(btn => {
     btn.textContent = filterLabels[btn.dataset.filter] ?? btn.dataset.filter;
