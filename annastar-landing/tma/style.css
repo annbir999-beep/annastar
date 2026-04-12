@@ -1,0 +1,343 @@
+/* ===========================================
+   ANNASTAR TMA — стили Telegram Mini App
+   Использует CSS-переменные Telegram для автоматической темы
+   =========================================== */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --tma-radius: 12px;
+  --tma-gap: 12px;
+  --tma-gold: #b5804f;
+}
+
+html { font-size: 16px; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--tg-theme-bg-color, #1c1c1c);
+  color: var(--tg-theme-text-color, #f0ede8);
+  min-height: 100dvh;
+  overscroll-behavior: none;
+}
+
+/* ── Шапка ── */
+.tma-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--tg-theme-bg-color, #1c1c1c);
+  border-bottom: 1px solid var(--tg-theme-hint-color, #444);
+  padding: 12px 16px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tma-header__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tma-logo {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--tma-gold);
+}
+
+.tma-lang {
+  background: none;
+  border: 1px solid var(--tg-theme-hint-color, #555);
+  color: var(--tg-theme-hint-color, #aaa);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* ── Фильтры ── */
+.tma-filters {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+.tma-filters::-webkit-scrollbar { display: none; }
+
+.tma-filter {
+  flex-shrink: 0;
+  background: none;
+  border: 1px solid var(--tg-theme-hint-color, #555);
+  color: var(--tg-theme-hint-color, #aaa);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.tma-filter.is-active {
+  background: var(--tma-gold);
+  border-color: var(--tma-gold);
+  color: #fff;
+}
+
+/* ── Сетка каталога ── */
+.tma-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--tma-gap);
+  padding: var(--tma-gap);
+}
+
+/* ── Карточка ── */
+.tma-card {
+  background: var(--tg-theme-secondary-bg-color, #252525);
+  border-radius: var(--tma-radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s;
+  position: relative;
+}
+.tma-card:active { transform: scale(0.97); }
+
+.tma-card__img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #2a2a2a;
+}
+.tma-card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.tma-card__badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: var(--tma-gold);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+}
+.tma-card__badge--concept { background: #7a5c9a; }
+.tma-card__badge--new     { background: #3a7a5c; }
+
+.tma-card__body {
+  padding: 10px;
+}
+.tma-card__title {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--tg-theme-text-color, #f0ede8);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tma-card__price {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--tma-gold);
+}
+.tma-card__status {
+  font-size: 11px;
+  color: var(--tg-theme-hint-color, #888);
+}
+
+/* ── Bottom sheet (модалка) ── */
+.tma-sheet-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 100;
+}
+.tma-sheet-overlay.is-open { display: block; }
+
+.tma-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 92dvh;
+  background: var(--tg-theme-bg-color, #1c1c1c);
+  border-radius: 18px 18px 0 0;
+  overflow-y: auto;
+  z-index: 101;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.tma-sheet.is-open { transform: translateY(0); }
+
+.tma-sheet__handle {
+  width: 36px;
+  height: 4px;
+  background: var(--tg-theme-hint-color, #555);
+  border-radius: 2px;
+  margin: 12px auto 0;
+}
+
+.tma-sheet__img {
+  width: 100%;
+  max-height: 320px;
+  object-fit: contain;
+  background: var(--tg-theme-secondary-bg-color, #252525);
+  display: block;
+  margin-top: 12px;
+}
+
+.tma-sheet__body {
+  padding: 20px 16px 32px;
+}
+.tma-sheet__title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.tma-sheet__meta {
+  font-size: 13px;
+  color: var(--tg-theme-hint-color, #888);
+  margin-bottom: 12px;
+}
+.tma-sheet__desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--tg-theme-text-color, #f0ede8);
+  margin-bottom: 16px;
+}
+.tma-sheet__price {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--tma-gold);
+  margin-bottom: 16px;
+}
+
+.tma-sheet__formats {
+  margin-bottom: 16px;
+}
+.tma-sheet__formats-title {
+  font-size: 13px;
+  color: var(--tg-theme-hint-color, #888);
+  margin-bottom: 8px;
+}
+.tma-sheet__format-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--tg-theme-hint-color, #333);
+  font-size: 14px;
+}
+
+/* ── Кнопки ── */
+.tma-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: var(--tma-radius);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: opacity 0.2s;
+}
+.tma-btn:active { opacity: 0.8; }
+.tma-btn--primary {
+  background: var(--tg-theme-button-color, var(--tma-gold));
+  color: var(--tg-theme-button-text-color, #fff);
+  margin-bottom: 10px;
+}
+.tma-btn--outline {
+  background: none;
+  border: 1px solid var(--tg-theme-hint-color, #555);
+  color: var(--tg-theme-text-color, #f0ede8);
+}
+
+/* ── Форма заявки ── */
+.tma-form {
+  display: none;
+  padding: 20px 16px 32px;
+}
+.tma-form.is-visible { display: block; }
+
+.tma-form__title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.tma-form__work {
+  background: var(--tg-theme-secondary-bg-color, #252525);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+  margin-bottom: 16px;
+  color: var(--tg-theme-hint-color, #aaa);
+}
+
+.tma-input {
+  width: 100%;
+  background: var(--tg-theme-secondary-bg-color, #252525);
+  border: 1px solid var(--tg-theme-hint-color, #444);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 15px;
+  color: var(--tg-theme-text-color, #f0ede8);
+  margin-bottom: 12px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.tma-input:focus { border-color: var(--tma-gold); }
+.tma-input::placeholder { color: var(--tg-theme-hint-color, #666); }
+
+/* ── Экран успеха ── */
+.tma-success {
+  display: none;
+  padding: 40px 16px;
+  text-align: center;
+}
+.tma-success.is-visible { display: block; }
+.tma-success__icon { font-size: 48px; margin-bottom: 16px; }
+.tma-success__title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+.tma-success__text { font-size: 14px; color: var(--tg-theme-hint-color, #888); line-height: 1.5; }
+
+/* ── Пустой каталог ── */
+.tma-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 16px;
+  color: var(--tg-theme-hint-color, #888);
+  font-size: 14px;
+}
+
+/* ── Скелетон загрузки ── */
+.tma-skeleton {
+  background: var(--tg-theme-secondary-bg-color, #252525);
+  border-radius: var(--tma-radius);
+  overflow: hidden;
+  position: relative;
+}
+.tma-skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
+  animation: shimmer 1.4s infinite;
+}
+@keyframes shimmer {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(100%); }
+}
+.tma-skeleton__img  { aspect-ratio: 3/4; }
+.tma-skeleton__line { height: 12px; margin: 10px; border-radius: 4px; background: rgba(255,255,255,0.06); }
+.tma-skeleton__line--short { width: 60%; }

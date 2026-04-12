@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <title>AnnaStar — каталог</title>
+  <meta name="color-scheme" content="dark light"/>
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- Шапка с фильтрами -->
+  <header class="tma-header">
+    <div class="tma-header__top">
+      <span class="tma-logo">AnnaStar</span>
+      <button class="tma-lang" id="tmaLangBtn">EN</button>
+    </div>
+    <div class="tma-filters" id="tmaFilters">
+      <button class="tma-filter is-active" data-filter="all">Все</button>
+      <button class="tma-filter" data-filter="botanica">Botanica</button>
+      <button class="tma-filter" data-filter="space">Space</button>
+      <button class="tma-filter" data-filter="soul">Soul</button>
+      <button class="tma-filter" data-filter="concept">Под заказ</button>
+    </div>
+  </header>
+
+  <!-- Сетка каталога -->
+  <main class="tma-grid" id="tmaGrid">
+    <!-- Скелетоны при загрузке -->
+    <div class="tma-skeleton">
+      <div class="tma-skeleton__img"></div>
+      <div class="tma-skeleton__line"></div>
+      <div class="tma-skeleton__line tma-skeleton__line--short"></div>
+    </div>
+    <div class="tma-skeleton">
+      <div class="tma-skeleton__img"></div>
+      <div class="tma-skeleton__line"></div>
+      <div class="tma-skeleton__line tma-skeleton__line--short"></div>
+    </div>
+    <div class="tma-skeleton">
+      <div class="tma-skeleton__img"></div>
+      <div class="tma-skeleton__line"></div>
+      <div class="tma-skeleton__line tma-skeleton__line--short"></div>
+    </div>
+    <div class="tma-skeleton">
+      <div class="tma-skeleton__img"></div>
+      <div class="tma-skeleton__line"></div>
+      <div class="tma-skeleton__line tma-skeleton__line--short"></div>
+    </div>
+  </main>
+
+  <!-- Bottom sheet — детали работы -->
+  <div class="tma-sheet-overlay" id="tmaOverlay"></div>
+  <div class="tma-sheet" id="tmaSheet" role="dialog" aria-modal="true">
+    <div class="tma-sheet__handle"></div>
+    <img class="tma-sheet__img" id="tmaSheetImg" src="" alt=""/>
+    <div class="tma-sheet__body" id="tmaSheetBody"></div>
+
+    <!-- Форма заявки (внутри sheet) -->
+    <div class="tma-form" id="tmaForm">
+      <p class="tma-form__title" id="tmaFormTitle">Оставить заявку</p>
+      <div class="tma-form__work" id="tmaFormWork"></div>
+      <input class="tma-input" id="tmaName"    type="text"  autocomplete="name"  placeholder="Ваше имя"/>
+      <input class="tma-input" id="tmaPhone"   type="tel"   autocomplete="tel"   placeholder="Телефон"/>
+      <textarea class="tma-input" id="tmaComment" rows="3"  placeholder="Комментарий (необязательно)" style="resize:none"></textarea>
+      <button class="tma-btn tma-btn--primary" id="tmaSubmit">Отправить заявку</button>
+      <button class="tma-btn tma-btn--outline" id="tmaFormBack">Назад</button>
+    </div>
+
+    <!-- Экран успеха -->
+    <div class="tma-success" id="tmaSuccess">
+      <div class="tma-success__icon">✉️</div>
+      <p class="tma-success__title" id="tmaSuccessTitle">Заявка отправлена!</p>
+      <p class="tma-success__text"  id="tmaSuccessText">Анна свяжется с вами в течение дня.</p>
+      <button class="tma-btn tma-btn--outline" id="tmaSuccessBack" style="margin-top:24px">Вернуться в каталог</button>
+    </div>
+  </div>
+
+  <script src="i18n.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
